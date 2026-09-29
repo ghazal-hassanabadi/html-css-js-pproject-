@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     
+
+
+    <title>Popcorn</title>
+</head>
+<body>
+
+    <header>
+
+        <section class="welcome">
+            <img src="images/popcorn-l.png" alt="">
+        </section>
+          <div class="btnUser">
+            <button class="user-btn" id="userBtn">
+              <i class="fa-regular fa-user" style="color: rgb(255, 255, 255);"></i>
+            </button>
+
+            <div class="search-wrapper">
+              <i class="fa-solid fa-magnifying-glass search-icon" style="color: rgb(255, 255, 255);"></i>
+              <input type="text" class="search-box" id="searchBox" placeholder="جستجوی فیلم،سریال و بازیگر...">
+            </div>
+         </div>
+    </header>
+
+
+    <main>
+
+        <section class="tab">
+
+            <section class="menu">
+                <button class="tablinks-active" data-tab="tab1"> خانه </button>
+                <button class="tablinks" data-tab="tab2"> فیلم ها </button>
+                <button class="tablinks" data-tab="tab3"> سریال ها </button>
+                <button class="tablinks" data-tab="tab3"> انیمیشن </button>
+                <button class="tablinks" data-tab="tab4"> درباره ما </button>
+            </section>
+
+
+            <section class="tab-content" id="tab1">
+
+                <section class="home-active">
+
+               <section class="sliderImages-mobile">
+
+                <section class="img1">
+
+                   <img class="active" src="images/img-mobile.2.jpg" alt="Slide 1">
+
+                   <div class="img-text">
+                    <h1>Brothers</h1>
+                    <p>سریال برادرها درمورد متیو و وودی سال ها بهترین دوستان یکدیگر بوده اند،…</p>
+                    <button class="btnDownlode">دانلود و تماشا</button>
+                   </div>
+
+                </section>   
+
+                   <img class="slide" src="images/img-mobile.2.jpg" alt="Slide 2">
+                   <img class="slide" src="images/img-mobile.3.jpg" alt="Slide 3">
+                   <img class="slide" src="images/img-mobile.4.jpg" alt="Slide 4">
+                   <img class="slide" src="images/img-mobile.5.jpg" alt="Slide 5">
+                   <img class="slide" src="images/img-mobile.6.jpg" alt="Slide 6">
+
+
+               </section>
+
+
+               <section class="sliderImages">
+
+                   
+                <section class="img1">
+
+                   <img class="active" src="images/img.2.jpg" alt="Slide 1">
+
+                   <div class="img-text">
+                    <h1>Brothers</h1>
+                    <p>سریال برادرها درمورد متیو و وودی سال ها بهترین دوستان یکدیگر بوده اند،…</p>
+                    <button class="btnDownlode">دانلود و تماشا</button>
+                   </div>
+
+                </section> 
+
+                   <img class="slide" src="images/img.1.jpg" alt="Slide 2">
+                   <img class="slide" src="images/img.3.jpg" alt="Slide 3">
+                   <img class="slide" src="images/img.4.jpg" alt="Slide 4">
+                   <img class="slide" src="images/img.5.jpg" alt="Slide 5">
+                   <img class="slide" src="images/img.6.jpg" alt="Slide 6">
+
+
+               </section>               
+
+              <button class="next" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+              <button class="back" id="backBtn"><i class="fa-solid fa-chevron-left"></i></button>
+
+
+              <section class="dots">
+                  <button data-index="0"><i class="fa-solid fa-circle"></i></button>
+                  <button data-index="1"><i class="fa-solid fa-circle"></i></button>
+                  <button data-index="2"><i class="fa-solid fa-circle"></i></button>
+                  <button data-index="3"><i class="fa-solid fa-circle"></i></button>
+                  <button data-index="4"><i class="fa-solid fa-circle"></i></button>
+                  <button data-index="5"><i class="fa-solid fa-circle"></i></button>
+
+              </section>
+            </section>
+
+
+              <section class="new">
+                <div>
+               
+                    <h2>جدیدترین فیلم ها </h2>
+
+                      <section class="section-divider"> </section>
+
+                          <a href="#" class="more-link"> بیشتر  </a>
+                
+                </div>
+
+
+                  <section class="new-movies-list" id="moviesList"></section>
+
+              </section>
+
+
+              <section class="new">
+               <div>
+                
+                    <h2>سریال های 2025 و 2026</h2>
+
+                      <section class="section-divider"></section>
+
+                          <a href="#" class="more-link">   بیشتر </a>
+
+                </div>
+
+                 <section class="new-movies-list" id="seriesList"></section>
+              </section>
+
+       
+            </section>
+        </section>
+    </main>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
