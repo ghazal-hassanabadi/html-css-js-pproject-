@@ -8,33 +8,36 @@ function showTab(tabId){
     section.classList.remove("active");
   });
 
-   const selectedSection = document.getElementById(tabId);
-   selectedSection.classList.add("active");
+  const selectedSection = document.getElementById(tabId);
+  selectedSection.classList.add("active");
 
-   allTabButtons.forEach(function(button) {
-  button.classList.remove("tablinks-active");
-  button.classList.add("tablinks");
+  localStorage.setItem("activeTab", tabId);
 
-  if(button.getAttribute("data-tab") === tabId){
-    button.classList.remove("tablinks");
-    button.classList.add("tablinks-active");
+  allTabButtons.forEach(function(button) {
+    button.classList.remove("tablinks-active");
+    button.classList.add("tablinks");
+
+    if(button.getAttribute("data-tab") === tabId){
+      button.classList.remove("tablinks");
+      button.classList.add("tablinks-active");
+    }
+  });
 }
+
+
+document.addEventListener("click",function(e){
+  if(!e.target.hasAttribute("data-tab")){
+    return;
+  }
+  const selectedTabId =  e.target.getAttribute("data-tab");
+  showTab(selectedTabId);
 });
 
+const savedTab = localStorage.getItem("activeTab");
 
+if (savedTab !== null) {
+  showTab(savedTab);
 }
-
-
-  document.addEventListener("click",function(e){
-    if(!e.target.hasAttribute("data-tab")){
-      
-      return;
-    }
-
-    const selectedTabId =  e.target.getAttribute("data-tab");
-    showTab(selectedTabId);
-    
-  });
 
 
 
@@ -95,6 +98,115 @@ const BASE_URL = "https://api.themoviedb.org/3";
 
 const moviesList = document.querySelector("#moviesList");
 const seriesList = document.querySelector("#seriesList");
+
+/*----------------فیلتر--------------------- */
+
+const genreIds = {
+  romance:10749,
+  horror:27,
+  crime:80,
+  comedy:35,
+  action:28,
+  animation:16,
+  drama:18,
+  adventure: 12,
+
+}
+
+const resultsPerPage = 20;
+
+function getSelectedGenres () {
+  const checkedBoxes = document.querySelectorAll('input[name="genre"]:checked');
+
+  const result = [];
+
+  checkedBoxes.forEach(function(box) {
+    const code = genreIds[box.value];
+    result.push(code);
+  });
+
+  return result;
+}
+
+function getSelectedCategory () {
+  const movieBox = document.querySelector('input[name="category"][value="movie"]:checked');
+  const seriesBox = document.querySelector('input[name="category"][value="series"]:checked');
+
+  if (seriesBox && !movieBox) {
+    return "tv";
+  }
+
+  return "movie";
+}
+
+function getSelectedYear() {
+  const yearFilter = document.querySelector("#yearFilter");
+  return yearFilter.value;
+}
+
+function buildDiscoverUrl() {
+  const genres = getSelectedGenres();
+  const category =  getSelectedCategory();
+  const year = getSelectedYear();
+
+  let address = `${BASE_URL}/discover/${category}?api_key=${API_KEY}&language=fa-IR&sort_by=popularity.desc`;
+
+  if (genres.length > 0) {
+    address = address + "&with_genres=" + genres.join(",");
+  }
+
+  if (year !== "") {
+    if (category === "movie") {
+      address = address + "&primary_release_year=" + year;
+    } else {
+      address = address + "&first_air_date_year=" + year;
+    }
+  }
+
+  return address;
+}
+
+
+const filterResults = document.querySelector("#movieList");
+async function getFilteredMovies() {
+  try {
+    const url = buildDiscoverUrl();
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error("bad response");
+    }
+
+    const data = await res.json();
+
+    if (data.results.length === 0) {
+      filterResults.innerHTML = `<p class="no-results">فیلمی با این مشخصات پیدا نشد</p>`;
+      return;
+    }
+
+    renderCards(data.results.slice(0, resultsPerPage), filterResults);
+  } catch (err) {
+    console.error("خطا در دریافت فیلتر:", err);
+    filterResults.innerHTML = `<p class="no-results">مشکلی پیش آمد. اینترنت خود را بررسی کن و دوباره تلاش کن</p>`;
+  }
+}
+
+const applyBtn = document.querySelector("#applyMovieFilterBtn");
+
+ applyBtn.addEventListener("click", function () {
+   getFilteredMovies();
+   
+});
+getFilteredMovies();
+
+const clearBtn = document.querySelector("#clearMovieFilterBtn");
+const filterForm = document.querySelector("#movieFilterForm");
+
+clearBtn.addEventListener("click", function () {
+  filterForm.reset();
+  getFilteredMovies();
+});
+
 
 
 /*--------------------ساخت کارت (مشترک بین دو بخش)---------------*/
@@ -208,7 +320,7 @@ async function getPopularActors() {
       });
     });
 
-    renderActors(actors.slice(0, 8), actorsList);
+    renderActors(actors.slice(0, 10), actorsList);
   } catch (err) {
     console.error("خطا در دریافت بازیگران:", err);
   }

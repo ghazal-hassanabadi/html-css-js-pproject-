@@ -317,8 +317,64 @@
             </section>
 
 <!----------------tab2 --------------------->
-            <section class="tab-content" id="tab2">
-<p>ihgfddfvc</p>
+<section class="tab-content" id="tab2">
+              
+<main class="movie-page-layout">
+
+
+  <form id="movieFilterForm">  
+
+    
+
+    <section class="movie-filter">
+    <h2 class="filter-title">فیلتر فیلم و سریال</h2>
+
+ <details class="filter-row">
+    <summary>دسته‌بندی</summary>
+    <div class="filter-row-content">
+        <label><input type="checkbox" name="category" value="movie"/> فیلم</label>
+        <label><input type="checkbox" name="category" value="series" /> سریال</label>
+    </div>
+ </details>
+
+    
+    <details class="filter-row">
+        <summary>سال تولید </summary>
+        <div class="filter-row-content">
+            <section class="year">
+                <label for="yearFilter">سال تولید </label>
+                <input type="number" id="yearFilter" name="yearFilter" placeholder="" />
+            </section>
+
+
+        </div>
+    </details>
+
+    <details class="filter-row">
+        <summary>ژانر   </summary>
+        <div class="filter-row-content">
+            <label><input type="checkbox" name="genre" value="romance" /> عاشقانه</label>
+            <label><input type="checkbox" name="genre" value="horror"/> ترسناک</label>
+            <label><input type="checkbox" name="genre" value="crime"/> جنایی</label>
+            <label><input type="checkbox" name="genre" value="comedy"/> کمدی </label>
+
+            <label><input type="checkbox" name="genre" value="drama"/> درام </label>
+            <label><input type="checkbox" name="genre" value="animation"/> انیمیشن </label>
+             <label><input type="checkbox" name="genre" value="action"/> انیمیشن </label>
+
+        </div>
+    </details>
+
+    <button type="button" class="btn-primary" id="applyMovieFilterBtn">اعمال فیلتر</button>
+   <button type="button" class="btn-secondary" id="clearMovieFilterBtn">حذف فیلتر</button>
+</section>
+  </form>
+
+<section id="movieList">
+
+</section>
+</main>
+
             </section>
         </section>
 
