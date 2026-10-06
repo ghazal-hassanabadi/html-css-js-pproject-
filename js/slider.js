@@ -3,7 +3,7 @@ const dots = document.querySelectorAll(".dots button");
 const nextBtn = document.querySelector("#nextBtn");
 const backBtn = document.querySelector("#backBtn");
 
-const autoPlayDelay = 3000;
+const autoPlayDelay = 4000;
 
 let autoPlayTimer;
 let currentIndex = 0;

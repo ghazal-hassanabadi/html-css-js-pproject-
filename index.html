@@ -19,9 +19,9 @@
             <img src="images/popcorn-l.png" alt="">
         </section>
           <div class="btnUser">
-            <button class="user-btn" id="userBtn">
-              <i class="fa-regular fa-user" style="color: rgb(255, 255, 255);"></i>
-            </button>
+           <button class="user-btn" id="userBtn" aria-label="منو">
+             <i class="fa-solid fa-bars" style="color: rgb(255, 255, 255);"></i>
+           </button>
 
             <div class="search-wrapper">
               <i class="fa-solid fa-magnifying-glass search-icon" style="color: rgb(255, 255, 255);"></i>
@@ -359,8 +359,7 @@
             <label><input type="checkbox" name="genre" value="comedy"/> کمدی </label>
 
             <label><input type="checkbox" name="genre" value="drama"/> درام </label>
-            <label><input type="checkbox" name="genre" value="animation"/> انیمیشن </label>
-             <label><input type="checkbox" name="genre" value="action"/> انیمیشن </label>
+
 
         </div>
     </details>
@@ -379,7 +378,59 @@
         </section>
 
         <section class="tab-content" id="tab3"></section>
-        <section class="tab-content" id="tab4"></section>
+
+        <!--------------انیمیشن--------------------------->
+        <section class="tab-content" id="tab4">
+          <section class="movie-page-layout">
+
+  <form id="animationFilterForm">
+
+    <section class="movie-filter">
+      <h2 class="filter-title">فیلتر انیمیشن</h2>
+
+      <details class="filter-row">
+        <summary>رده سنی</summary>
+        <div class="filter-row-content">
+          <label><input type="radio" name="age" value="g" /> همه سنین</label>
+          <label><input type="radio" name="age" value="pg" /> با نظارت والدین</label>
+          <label><input type="radio" name="age" value="pg13" /> ۱۳ سال به بالا</label>
+          <label><input type="radio" name="age" value="r" /> ۱۷ سال به بالا</label>
+        </div>
+      </details>
+
+      <details class="filter-row">
+        <summary>سال تولید</summary>
+        <div class="filter-row-content">
+          <section class="year">
+            <label for="animationYearFilter">سال</label>
+            <input type="number" id="animationYearFilter" name="animationYearFilter" />
+          </section>
+        </div>
+      </details>
+
+      <details class="filter-row">
+        <summary>ژانر</summary>
+        <div class="filter-row-content">
+          <label><input type="checkbox" name="animationGenre" value="family" /> خانوادگی</label>
+          <label><input type="checkbox" name="animationGenre" value="comedy" /> کمدی</label>
+          <label><input type="checkbox" name="animationGenre" value="adventure" /> ماجراجویی</label>
+          <label><input type="checkbox" name="animationGenre" value="fantasy" /> فانتزی</label>
+          <label><input type="checkbox" name="animationGenre" value="action" /> اکشن</label>
+          <label><input type="checkbox" name="animationGenre" value="scifi" /> علمی‌تخیلی</label>
+          <label><input type="checkbox" name="animationGenre" value="drama" /> درام</label>
+        </div>
+      </details>
+
+      <button type="button" class="btn-primary" id="applyAnimationFilterBtn">اعمال فیلتر</button>
+      <button type="button" class="btn-secondary" id="clearAnimationFilterBtn">حذف فیلتر</button>
+    </section>
+
+  </form>
+
+  <section id="animationList"></section>
+
+</section>
+        </section>
         <section class="tab-content" id="tab5"></section>
 
 
@@ -444,6 +495,39 @@
   </section>
 
 </footer>
+
+
+<!------------------------------منوی کناره صفحه------------------------>
+
+<div class="side-overlay" id="sideOverlay"></div>
+
+<aside class="side-menu" id="sideMenu" aria-hidden="true">
+
+  <button class="side-close" id="sideClose" aria-label="بستن">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <nav class="side-list">
+
+    <a href="create-account.html" class="side-item">
+      <i class="fa-regular fa-user"></i>
+      <span>ورود و ثبت نام</span>
+    </a>
+
+    <a href="#" class="side-item">
+      <i class="fa-solid fa-crown"></i>
+      <span>خرید اشتراک</span>
+    </a>
+
+    <button type="button" class="side-item" id="darkToggle" aria-pressed="false">
+      <i class="fa-solid fa-moon" id="darkIcon"></i>
+      <span>دارک مود</span>
+      <span class="side-switch"></span>
+    </button>
+
+  </nav>
+
+</aside>
 
 
     <script type="module" src="js/index.js"></script>

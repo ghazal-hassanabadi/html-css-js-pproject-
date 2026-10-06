@@ -3,6 +3,8 @@ import { initSlider } from "./slider.js";
 import { initFilters } from "./filter.js";
 import { initModal } from "./modal.js";
 import { initSocialDropdown } from "./dropdown.js";
+import { initSidebar } from "./slidebar.js";
+import { initCreateAccount } from "./create-account.js";
 
 import {
   getNewMovies,
@@ -22,6 +24,10 @@ initFilters();
 initModal();
 
 initSocialDropdown();
+
+initSidebar();
+
+initCreateAccount();
 
 
 async function loadHomePage() {

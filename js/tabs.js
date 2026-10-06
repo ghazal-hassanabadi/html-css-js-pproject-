@@ -2,13 +2,15 @@ const allTabButtons = document.querySelectorAll("[data-tab]");
 const tabSections = document.querySelectorAll(".tab-content");
 
 export function showTab(tabId) {
-  tabSections.forEach(function (section) {
-    section.classList.remove("active");
-  });
 
   const selectedSection = document.getElementById(tabId);
 
+  // اگر این صفحه آن تب را ندارد، کاری انجام نده
   if (!selectedSection) return;
+
+  tabSections.forEach(function (section) {
+    section.classList.remove("active");
+  });
 
   selectedSection.classList.add("active");
 
@@ -31,6 +33,14 @@ export function initTabs() {
 
     if (tabButton) {
       const selectedTabId = tabButton.getAttribute("data-tab");
+
+      // صفحه‌ی دیگر (مثل ورود): تب را ذخیره کن و به صفحه‌ی اصلی برو
+      if (!document.getElementById(selectedTabId)) {
+        localStorage.setItem("activeTab", selectedTabId);
+        window.location.href = "index.html";
+        return;
+      }
+
       showTab(selectedTabId);
       return;
     }
