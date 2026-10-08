@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/create-account.css">
+    <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>signup</title>
+    <title>ثبت نام</title>
 </head>
 <body>
 
@@ -29,10 +29,8 @@
                 <button class="tablinks" data-tab="tab3"> سریال ها </button>
                 <button class="tablinks" data-tab="tab4"> انیمیشن </button>
                 <button class="tablinks" data-tab="tab5"> درباره ما </button>
-            </section>            
+            </section>
          </div>
-
-
 
     </header>
 
@@ -46,32 +44,40 @@
 </section>
 
 
-<form id="signupForm">
+<form id="signupForm" novalidate>
 
   <section>
-    <p class="signin-name">ورود</p>
+    <p class="signin-name">ثبت نام</p>
+
+    <input type="text" id="fullname" placeholder="نام و نام خانوادگی" autocomplete="name">
+    <p id="fullnameError"></p>
+
+    <input type="email" id="email" placeholder="ایمیل" autocomplete="email">
+    <p id="emailError"></p>
 
     <input type="text" id="username" placeholder="نام کاربری" autocomplete="username">
     <p id="usernameError"></p>
 
-    <input type="password" id="password" placeholder="رمز عبور" autocomplete="current-password">
+    <input type="password" id="password" placeholder="رمز عبور" autocomplete="new-password">
     <span id="togglePassword">
       <i class="fa-regular fa-eye"></i>
     </span>
+    <p id="passwordError"></p>
 
-     <p id="passwordError"></p>
-     <a href="#" class="forgot-link" id="forgotLink">رمز عبور خود را فراموش کرده‌اید؟</a>
+    <input type="password" id="confirmPassword" placeholder="تکرار رمز عبور" autocomplete="new-password">
+    <span id="toggleConfirmPassword">
+      <i class="fa-regular fa-eye"></i>
+    </span>
+    <p id="confirmPasswordError"></p>
 
-    <button type="submit">ورود</button>
+    <button type="submit">ثبت نام</button>
 
-    <a href="signup.html" class="create-link">حساب کاربری ندارید؟ ایجاد حساب</a>
+    <a href="login.html" class="create-link">حساب کاربری دارید؟ ورود</a>
 
     <p id="successMessage"></p>
   </section>
 
 </form>
-
-
 
 
  <!--------------------------------footer----------------------------->
@@ -146,7 +152,7 @@
 
   <nav class="side-list">
 
-    <a href="create-account.html" class="side-item">
+    <a href="login.html" class="side-item">
       <i class="fa-regular fa-user"></i>
       <span>ورود و ثبت نام</span>
     </a>
@@ -165,8 +171,6 @@
   </nav>
 
 </aside>
-
-
 
     <script type="module" src="js/index.js"></script>
 </body>

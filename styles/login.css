@@ -64,16 +64,19 @@
 /*------------------------------signup (mobile)---------------------*/
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  box-sizing: border-box; margin: 0; padding: 0;
+ }
+
 
 body {
 
   font-family: var(--font-family);
   color: var(--text);
   background: var(--background);
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 
@@ -246,14 +249,11 @@ input {
   margin-bottom: 20px;
 }
 
+
 #signupForm {
   width: 93%;
-  margin-right: 10px;
-  margin-top: 50px;
-
-
-  
-  
+  margin: auto;
+  padding: 30px 0;
 }
 
 #signupForm section {
@@ -296,8 +296,8 @@ input {
 }
 
 /* آیکن چشم روی input قبلی می‌نشیند */
-#togglePassword,
-#toggleConfirmPassword {
+#togglePassword
+ {
   align-self: flex-end;
   margin-top: -45px;
   margin-inline-start: 14px;
@@ -361,7 +361,13 @@ input {
   font-size: 13px;
   font-weight: 600;
   text-align: center;
-  color: #9be8b4;
+  color: rgb(23, 62, 3);
+}
+
+/*پیام خطا */
+
+#successMessage.is-error {
+  color: #ff0000;
 }
 
 
@@ -371,7 +377,7 @@ input {
   align-self: center;
   font-size: 12px;
   text-decoration: none;
-  color: var(--black);
+  color: var(--primary-dark);
   transition: color var(--transition-fast);
   margin-top: 5px;
   
@@ -379,7 +385,7 @@ input {
 }
 
 .forgot-link:hover {
-  color: var(--primary-dark);
+  color: var(--black);
 }
 
 .create-link {
@@ -387,12 +393,12 @@ input {
   font-size: 13px;
   text-align: center;
   text-decoration: none;
-  color: var(--black);
+  color: var(--primary-dark);
   transition: color var(--transition-fast);
 }
 
 .create-link:hover {
-  color: var(--primary-dark);
+  color: var(--black);
 }
 
 
@@ -675,23 +681,184 @@ input {
   transform: translateX(-16px);
 }
 
-
-/* ---------- dark mode ---------- */
-
+/*------------------------dark------------------------*/
 body.dark-mode {
-  --background: #1b1512;
-  --background-color: #2a201b;
-  --text-secondary: #e6d9c8;
-  --bg-menu: rgba(255, 255, 255, 0.06);
-  --menu-bar-bg: #2a201b;
+  --background: #100e0e;
+  --background-color: #140a10;
+  --surface: #171313;
+  --surface-light: #140a10;
+  --surface-hover: #221219;
+  --model-box-sh: #0f0e0e;
+  --filter-bg: #2a0d17;
+  --menu-bar-bg: #140a10;
+  --bg-menu: rgba(255, 255, 255, 0.07);
+
+  --primary: #41131e;
+  --primary-hover: #6b2335;
+  --primary-dark: #5a1c2b;
+  --menu-desktop-bg: #876151;
+  --menu-desktop-text: #f5ebf1;
+  --modal-dwn-hover: #a67b69;
+  --modal-btn-bg-hover: rgba(135, 97, 81, 0.35);
+
+  --text: #f5ebf1;
+  --text-secondary: #e6d6e0;
+  --text-muted: #9a8895;
+
+  --border: #2a1822;
+  --border-red: rgba(153, 107, 114, 0.6);
+
+  --red-glow: 0 0 20px rgba(153, 107, 114, 0.25);
+
+  --warning: #876151;
+
+  color: var(--text);
+}
 
 
+/* ---------- اصلاح جزئیات ---------- */
+
+body.dark-mode .btnUser {
+  background: var(--surface);
+}
+
+body.dark-mode .user-btn,
+body.dark-mode .search-box {
+  color: var(--text);
 }
 
 body.dark-mode .side-menu {
-  background: #2a201b;
-  border-left-color: var(--primary-dark);
+  border-left-color: var(--border);
 }
+
+body.dark-mode .btn-primary:hover,
+body.dark-mode .btn-secondary:hover {
+  background: #340d16;
+  color: var(--white);
+  box-shadow: 0 0 18px rgba(27, 19, 20, 0.4);
+}
+
+/* تب فعال: زرشکی با یه خط نازک صورتی دورش */
+body.dark-mode .tablinks-active {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 0 0 1px var(--border-red),
+              0 0 18px rgba(60, 39, 42, 0.35);
+}
+
+body.dark-mode .social-menu a {
+  background-color: var(--primary);
+  color: var(--text);
+}
+
+/* مودال و کارت‌های اپ توی پس‌زمینه‌ی مشکی گم نشن */
+body.dark-mode .modal-box {
+  background-color: var(--background-color);
+  border-color: var(--border-red);
+}
+
+body.dark-mode .app-card {
+  background: var(--background-color);
+}
+
+body.dark-mode .app-card-icon,
+body.dark-mode .modal-icon {
+  box-shadow: 0 0 0 1px var(--border-red),
+              0 0 14px rgba(153, 107, 114, 0.4);
+}
+
+body.dark-mode .filter-row-content label:has(input:checked) {
+  border-color: #996b72;
+}
+
+body.dark-mode .btnDownlode {
+  background-color: rgba(135, 97, 81, 0.35);
+}
+
+/* رنگ‌های تأکیدی که با زرشکی نمی‌خونن، قهوه‌ای بشن */
+body.dark-mode .more-link,
+body.dark-mode .dots button.active,
+body.dark-mode .dots button:hover {
+  color: #876151;
+}
+
+body.dark-mode .more-link:hover {
+  color: #a67b69;
+}
+
+body.dark-mode .section-divider {
+  background: linear-gradient(to left, #996b72, transparent);
+}
+
+body.dark-mode .section-divider::after {
+  background-color: #996b72;
+}
+
+body.dark-mode .modal-divider {
+  background: linear-gradient(to left, #996b72, transparent);
+}
+
+body.dark-mode .actor-photo {
+  border-color: #996b72;
+}
+
+body.dark-mode .actor-card:hover .actor-photo {
+  border-color: #a67b69;
+}
+
+body.dark-mode .movie-card {
+  border-color: transparent;
+}
+
+body.dark-mode .movie-card:hover {
+  border-color: var(--border-red);
+}
+
+/* پایین اسلایدر آروم توی پس‌زمینه محو بشه */
+body.dark-mode .home-active::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 30%;
+  background: linear-gradient(to top, var(--background), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+
+
+
+/* ---------- صفحه‌ی ثبت نام ---------- */
+
+#fullnameError,
+#emailError {
+  min-height: 18px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #ff0000;
+}
+
+/* چشم فیلد تکرار رمز، مثل چشم فیلد رمز */
+#toggleConfirmPassword {
+  align-self: flex-end;
+  margin-top: -45px;
+  margin-inline-start: 14px;
+  height: 34px;
+  display: flex;
+  margin-left: 7px;
+  align-items: center;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: var(--transition-fast);
+}
+
+
+
+
 
 
 
@@ -699,9 +866,7 @@ body.dark-mode .side-menu {
 
 @media (min-width: 766px) {
 
-  body {
-    padding: 40px 25px;
-  }
+
 
 
       
@@ -782,9 +947,9 @@ body.dark-mode .side-menu {
     font-size: 15px;
   }
 
-  #togglePassword,
-  #toggleConfirmPassword {
-    margin-top: -44px;
+  #togglePassword
+   {
+    margin-top: -50px;
     height: 38px;
     font-size: 16px;
   }
@@ -824,6 +989,18 @@ body.dark-mode .side-menu {
 
   .social-arrow {
     margin-inline-start: 8px;
+  }
+
+
+    #fullnameError,
+  #emailError {
+    font-size: 13px;
+  }
+
+  #toggleConfirmPassword {
+    margin-top: -50px;
+    height: 38px;
+    font-size: 16px;
   }
 
 }
@@ -897,6 +1074,10 @@ body.dark-mode .side-menu {
     padding: 36px 34px;
   }
 
+  #togglePassword{
+    transform: translateY(-2px);
+  }
+
 
   
   .site-footer {
@@ -915,6 +1096,10 @@ body.dark-mode .side-menu {
 
   .footer-text {
     font-size: 13px;
+  }
+
+    #toggleConfirmPassword {
+    transform: translateY(-2px);
   }
 
 }

@@ -719,7 +719,7 @@ input {
   cursor: pointer;
   text-align: right;
   color: var(--text);
-  background: linear-gradient(135deg, var( --model-box-sh)0%, var(--surface) 20%);
+  background-color:rgb(48, 2, 2);
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: var(--shadow-sm);
@@ -1098,7 +1098,7 @@ body.no-scroll {
   font-size: 13px;
   color: var(--text);
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.06);
+  background-color:var(--menu-desktop-bg);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
   transition: var(--transition-fast);
@@ -1465,25 +1465,156 @@ body.no-scroll {
   transform: translateX(-16px);
 }
 
-
-/* ---------- dark mode ---------- */
+/* ---------- حالت تاریک (مشکی، زرشکی، رز خاکی و قهوه‌ای) ---------- */
 
 body.dark-mode {
-  --background: #1b1512;
-  --background-color: #2a201b;
-  --text-secondary: #e6d9c8;
-  --bg-menu: rgba(255, 255, 255, 0.06);
-  --menu-bar-bg: #2a201b;
+  --background: #100e0e;
+  --background-color: #140a10;
+  --surface: #171313;
+  --surface-light: #140a10;
+  --surface-hover: #221219;
+  --model-box-sh: #0f0e0e;
+  --filter-bg: #2a0d17;
+  --menu-bar-bg: #140a10;
+  --bg-menu: rgba(255, 255, 255, 0.07);
+
+  --primary: #41131e;
+  --primary-hover: #6b2335;
+  --primary-dark: #5a1c2b;
+  --menu-desktop-bg: #876151;
+  --menu-desktop-text: #f5ebf1;
+  --modal-dwn-hover: #a67b69;
+  --modal-btn-bg-hover: rgba(135, 97, 81, 0.35);
+
+  --text: #f5ebf1;
+  --text-secondary: #e6d6e0;
+  --text-muted: #9a8895;
+
+  --border: #2a1822;
+  --border-red: rgba(153, 107, 114, 0.6);
+
+  --red-glow: 0 0 20px rgba(153, 107, 114, 0.25);
+
+  --warning: #876151;
+
+  color: var(--text);
+}
 
 
+/* ---------- اصلاح جزئیات ---------- */
+
+body.dark-mode .btnUser {
+  background: var(--surface);
+}
+
+body.dark-mode .user-btn,
+body.dark-mode .search-box {
+  color: var(--text);
 }
 
 body.dark-mode .side-menu {
-  background: #2a201b;
-  border-left-color: var(--primary-dark);
+  border-left-color: var(--border);
 }
 
+body.dark-mode .btn-primary:hover,
+body.dark-mode .btn-secondary:hover {
+  background: #340d16;
+  color: var(--white);
+  box-shadow: 0 0 18px rgba(27, 19, 20, 0.4);
+}
 
+/* تب فعال: زرشکی با یه خط نازک صورتی دورش */
+body.dark-mode .tablinks-active {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 0 0 1px var(--border-red),
+              0 0 18px rgba(60, 39, 42, 0.35);
+}
+
+body.dark-mode .social-menu a {
+  background-color: var(--primary);
+  color: var(--text);
+}
+
+/* مودال و کارت‌های اپ توی پس‌زمینه‌ی مشکی گم نشن */
+body.dark-mode .modal-box {
+  background-color: var(--background-color);
+  border-color: var(--border-red);
+}
+
+body.dark-mode .app-card {
+  background: var(--background-color);
+}
+
+body.dark-mode .app-card-icon,
+body.dark-mode .modal-icon {
+  box-shadow: 0 0 0 1px var(--border-red),
+              0 0 14px rgba(153, 107, 114, 0.4);
+}
+
+body.dark-mode .filter-row-content label:has(input:checked) {
+  border-color: #996b72;
+}
+
+body.dark-mode .btnDownlode {
+  background-color: rgba(135, 97, 81, 0.35);
+}
+
+/* رنگ‌های تأکیدی که با زرشکی نمی‌خونن، قهوه‌ای بشن */
+body.dark-mode .more-link,
+body.dark-mode .dots button.active,
+body.dark-mode .dots button:hover {
+  color: #876151;
+}
+
+body.dark-mode .more-link:hover {
+  color: #a67b69;
+}
+
+body.dark-mode .section-divider {
+  background: linear-gradient(to left, #996b72, transparent);
+}
+
+body.dark-mode .section-divider::after {
+  background-color: #996b72;
+}
+
+body.dark-mode .modal-divider {
+  background: linear-gradient(to left, #996b72, transparent);
+}
+
+body.dark-mode .actor-photo {
+  border-color: #996b72;
+}
+
+body.dark-mode .actor-card:hover .actor-photo {
+  border-color: #a67b69;
+}
+
+body.dark-mode .movie-card {
+  border-color: transparent;
+}
+
+body.dark-mode .movie-card:hover {
+  border-color: var(--border-red);
+}
+
+/* پایین اسلایدر آروم توی پس‌زمینه محو بشه */
+body.dark-mode .home-active::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 30%;
+  background: linear-gradient(to top, var(--background), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.state-message {
+  text-align: center;
+  padding: 24px 12px;
+  opacity: 0.7;
+}
 
 
 /*------------------------------tablet---------------------*/
@@ -1546,18 +1677,12 @@ body.dark-mode .side-menu {
         position: relative;
         overflow: hidden;
         aspect-ratio: 16 / 9;
-        width: 100%;
+        width: 92%;
         
         display: flex;
     
 }
 
-
-
-.sliderImages-mobile {
-    display: none;
-
-}
 
 
 .sliderImages {
@@ -1566,9 +1691,8 @@ body.dark-mode .side-menu {
     justify-content: center;
     align-items: center;
     width: 100%;
+    
 }
-
-
 
 
 

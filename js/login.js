@@ -1,4 +1,4 @@
-export function initCreateAccount() {
+export function initLogin() {
 
   const usernameInput = document.getElementById("username");
   const usernameError = document.getElementById("usernameError");
@@ -37,26 +37,32 @@ export function initCreateAccount() {
     return passwordInput.value.length >= 6;
   }
 
-  usernameInput.addEventListener("input", function () {
+  function validateUsername() {
 
     if (isUsernameValid()) {
       usernameError.textContent = "";
-    } else {
-      usernameError.textContent =
-        "نام کاربری باید ۳ تا ۲۰ حرف انگلیسی، عدد، نقطه یا... باشد";
+      return true;
     }
 
-  });
+    usernameError.textContent =
+      "نام کاربری باید ۳ تا ۲۰ حرف انگلیسی، عدد، نقطه یا زیرخط باشد";
+    return false;
+  }
 
-  passwordInput.addEventListener("input", function () {
+  function validatePassword() {
 
     if (isPasswordValid()) {
       passwordError.textContent = "";
-    } else {
-      passwordError.textContent = "رمز باید حداقل ۶ کاراکتر باشد";
+      return true;
     }
 
-  });
+    passwordError.textContent = "رمز باید حداقل ۶ کاراکتر باشد";
+    return false;
+  }
+
+  usernameInput.addEventListener("input", validateUsername);
+
+  passwordInput.addEventListener("input", validatePassword);
 
   // فعلاً فقط جلوی پرش صفحه را می‌گیرد
   forgotLink.addEventListener("click", function (event) {
@@ -67,10 +73,15 @@ export function initCreateAccount() {
 
     event.preventDefault();
 
-    if (isUsernameValid() && isPasswordValid()) {
+    const usernameOk = validateUsername();
+    const passwordOk = validatePassword();
+
+    if (usernameOk && passwordOk) {
+      successMessage.classList.remove("is-error");
       successMessage.textContent = "ورود موفق بود";
     } else {
-      console.log("لطفاً فیلدها را درست پر کنید");
+      successMessage.classList.add("is-error");
+      successMessage.textContent = "لطفاً فیلدها را درست پر کنید";
     }
 
   });

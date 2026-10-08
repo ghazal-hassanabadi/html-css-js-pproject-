@@ -4,7 +4,8 @@ import { initFilters } from "./filter.js";
 import { initModal } from "./modal.js";
 import { initSocialDropdown } from "./dropdown.js";
 import { initSidebar } from "./slidebar.js";
-import { initCreateAccount } from "./create-account.js";
+import { initLogin } from "./login.js";
+import { initSignup } from "./signin.js";
 
 import {
   getNewMovies,
@@ -12,7 +13,7 @@ import {
   getPopularActors
 } from "./api.js";
 
-import { renderCards, renderActors } from "./render.js";
+import { renderCards, renderActors, showMessage } from "./render.js";
 
 
 initTabs();
@@ -27,83 +28,62 @@ initSocialDropdown();
 
 initSidebar();
 
-initCreateAccount();
+initLogin();
 
+initSignup();
 
-async function loadHomePage() {
+async function loadSection(container, getData, render, errorText) {
 
-  const moviesList = document.querySelector("#moviesList");
-  const seriesList = document.querySelector("#seriesList");
-  const actorsList = document.querySelector("#actorsList");
+  if (!container) return;
 
-  if (moviesList) {
+  showMessage(container, "در حال بارگذاری...");
 
-    try {
+  try {
 
-      const movies = await getNewMovies();
+    const items = await getData();
 
-      renderCards(
-        movies.slice(0, 8),
-        moviesList
-      );
-
-    } catch (err) {
-
-      console.error(
-        "خطا در دریافت فیلم‌ها:",
-        err
-      );
-
+    if (items.length === 0) {
+      showMessage(container, "موردی پیدا نشد");
+      return;
     }
 
+    render(items, container);
+
+  } catch (err) {
+
+    console.error(errorText, err);
+
+    showMessage(container, "مشکلی پیش آمد. دوباره تلاش کن");
   }
+}
 
 
-  if (seriesList) {
+function loadHomePage() {
 
-    try {
+  loadSection(
+    document.querySelector("#moviesList"),
+    getNewMovies,
+    function (items, box) {
+      renderCards(items.slice(0, 8), box);
+    },
+    "خطا در دریافت فیلم‌ها:"
+  );
 
-      const series = await getSeries2025();
+  loadSection(
+    document.querySelector("#seriesList"),
+    getSeries2025,
+    function (items, box) {
+      renderCards(items.slice(0, 8), box);
+    },
+    "خطا در دریافت سریال‌ها:"
+  );
 
-      renderCards(
-        series.slice(0, 8),
-        seriesList
-      );
-
-    } catch (err) {
-
-      console.error(
-        "خطا در دریافت سریال‌ها:",
-        err
-      );
-
-    }
-
-  }
-
-
-  if (actorsList) {
-
-    try {
-
-      const actors = await getPopularActors();
-
-      renderActors(
-        actors,
-        actorsList
-      );
-
-    } catch (err) {
-
-      console.error(
-        "خطا در دریافت بازیگران:",
-        err
-      );
-
-    }
-
-  }
-
+  loadSection(
+    document.querySelector("#actorsList"),
+    getPopularActors,
+    renderActors,
+    "خطا در دریافت بازیگران:"
+  );
 }
 
 loadHomePage();

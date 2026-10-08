@@ -56,3 +56,8 @@ export function renderActors(items, container) {
 
   }).join("");
 }
+
+export function showMessage(container, text) {
+
+  container.innerHTML = `<p class="state-message">${text}</p>`;
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>signup</title>
+</head>
+<body>
+
+        <header>
+
+        <section class="welcome">
+            <img src="images/popcorn-l.png" alt="">
+        </section>
+          <div class="btnUser">
+           <button class="user-btn" id="userBtn" aria-label="منو">
+             <i class="fa-solid fa-bars" style="color: rgb(255, 255, 255);"></i>
+           </button>
+
+            <div class="search-wrapper">
+              <i class="fa-solid fa-magnifying-glass search-icon" style="color: rgb(255, 255, 255);"></i>
+              <input type="text" class="search-box" id="searchBox" placeholder="جستجوی فیلم،سریال و بازیگر...">
+            </div>
+            <section class="menu-desktip">
+                <button class="tablinks" data-tab="tab1"> خانه </button>
+                <button class="tablinks" data-tab="tab2"> فیلم ها </button>
+                <button class="tablinks" data-tab="tab3"> سریال ها </button>
+                <button class="tablinks" data-tab="tab4"> انیمیشن </button>
+                <button class="tablinks" data-tab="tab5"> درباره ما </button>
+            </section>            
+         </div>
+
+
+
+    </header>
+
+
+    <section class="menu">
+  <button class="tablinks" data-tab="tab1"> خانه </button>
+  <button class="tablinks" data-tab="tab2"> فیلم ها </button>
+  <button class="tablinks" data-tab="tab3"> سریال ها </button>
+  <button class="tablinks" data-tab="tab4"> انیمیشن </button>
+  <button class="tablinks" data-tab="tab5"> درباره ما </button>
+</section>
+
+
+<form id="signupForm">
+
+  <section>
+    <p class="signin-name">ورود</p>
+
+    <input type="text" id="username" placeholder="نام کاربری" autocomplete="username">
+    <p id="usernameError"></p>
+
+    <input type="password" id="password" placeholder="رمز عبور" autocomplete="current-password">
+    <span id="togglePassword">
+      <i class="fa-regular fa-eye"></i>
+    </span>
+
+     <p id="passwordError"></p>
+     <a href="#" class="forgot-link" id="forgotLink">رمز عبور خود را فراموش کرده‌اید؟</a>
+
+    <button type="submit">ورود</button>
+
+    <a href="signin.html" class="create-link">حساب کاربری ندارید؟ ایجاد حساب</a>
+
+    <p id="successMessage"></p>
+  </section>
+
+</form>
+
+
+
+
+ <!--------------------------------footer----------------------------->
+
+<footer class="site-footer">
+
+  <section class="footer-features">
+
+    <div class="footer-item">
+      <span class="footer-icon"><i class="fa-solid fa-film"></i></span>
+      <div class="footer-info">
+        <h4 class="footer-title">به‌روزترین فیلم و سریال</h4>
+        <p class="footer-text">با کیفیت بالا و لینک مستقیم</p>
+      </div>
+    </div>
+
+    <div class="footer-item">
+      <span class="footer-icon"><i class="fa-solid fa-headset"></i></span>
+      <div class="footer-info">
+        <h4 class="footer-title">پشتیبانی ۲۴/۷</h4>
+        <p class="footer-text">ما همیشه همراه شما هستیم</p>
+      </div>
+    </div>
+
+<section class="footer-social">
+
+  <button class="footer-item footer-link social-toggle" id="socialToggle" aria-expanded="false">
+    <span class="footer-icon"><i class="fa-solid fa-mobile-screen"></i></span>
+    <div class="footer-info">
+      <h4 class="footer-title"> ما را دنبال کنید </h4>
+      <p class="footer-text">برای تجربه بهتر</p>
+    </div>
+    <i class="fa-solid fa-chevron-down social-arrow"></i>
+  </button>
+
+  <ul class="social-menu">
+    <li>
+      <a href="#" aria-label="اینستاگرام">
+        <i class="fa-brands fa-instagram"></i>
+        اینستاگرام
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="تلگرام">
+        <i class="fa-brands fa-telegram"></i>
+        تلگرام
+      </a>
+    </li>
+  </ul>
+
+</section>
+
+  </section>
+
+  <section class="footer-legal">
+    <p>تمامی حقوق برای پاپ‌کورن محفوظ است. ۱۴۰۵</p>
+    <p class="footer-credit">این سایت از رابط برنامه‌نویسی تی‌ام‌دی‌بی استفاده می‌کند، ولی توسط آن تأیید یا گواهی نشده است.</p>
+  </section>
+
+</footer>
+
+
+<!------------------------------منوی کناره صفحه------------------------>
+
+<div class="side-overlay" id="sideOverlay"></div>
+
+<aside class="side-menu" id="sideMenu" aria-hidden="true">
+
+  <button class="side-close" id="sideClose" aria-label="بستن">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <nav class="side-list">
+
+    <a href="login.html" class="side-item">
+      <i class="fa-regular fa-user"></i>
+      <span>ورود و ثبت نام</span>
+    </a>
+
+    <a href="#" class="side-item">
+      <i class="fa-solid fa-crown"></i>
+      <span>خرید اشتراک</span>
+    </a>
+
+    <button type="button" class="side-item" id="darkToggle" aria-pressed="false">
+      <i class="fa-solid fa-moon" id="darkIcon"></i>
+      <span>دارک مود</span>
+      <span class="side-switch"></span>
+    </button>
+
+  </nav>
+
+</aside>
+
+
+
+    <script type="module" src="js/index.js"></script>
+</body>
+</html>
