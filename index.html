@@ -30,8 +30,8 @@
             <section class="menu-desktip">
                 <button class="tablinks-active" data-tab="tab1"> خانه </button>
                 <button class="tablinks" data-tab="tab2"> فیلم ها </button>
-                <button class="tablinks" data-tab="tab3"> سریال ها </button>
-                <button class="tablinks" data-tab="tab4"> انیمیشن </button>
+                <button class="tablinks" data-tab="tab3">  انیمیشن ها </button>
+                <button class="tablinks" data-tab="tab4"> جستجو </button>
                 <button class="tablinks" data-tab="tab5"> درباره ما </button>
             </section>            
          </div>
@@ -48,8 +48,8 @@
             <section class="menu">
                 <button class="tablinks-active" data-tab="tab1"> خانه </button>
                 <button class="tablinks" data-tab="tab2"> فیلم ها </button>
-                <button class="tablinks" data-tab="tab3"> سریال ها </button>
-                <button class="tablinks" data-tab="tab4"> انیمیشن </button>
+                <button class="tablinks" data-tab="tab3"> انیمیشن ها </button>
+                <button class="tablinks" data-tab="tab4"> جستجو </button>
                 <button class="tablinks" data-tab="tab5"> درباره ما </button>
             </section>
 
@@ -377,10 +377,10 @@
             </section>
         </section>
 
-        <section class="tab-content" id="tab3"></section>
+        
 
         <!--------------انیمیشن--------------------------->
-        <section class="tab-content" id="tab4">
+        <section class="tab-content" id="tab3">
           <section class="movie-page-layout">
 
   <form id="animationFilterForm">
@@ -431,6 +431,47 @@
 
 </section>
         </section>
+
+<!---------------------------------------جستجو------------------------------------>
+
+        <section class="tab-content" id="tab4">
+  <section class="search-page">
+
+<div class="search-bar">
+  <div class="search-field">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" id="searchPageInput" placeholder="جستجوی فیلم، سریال، بازیگر و ..." />
+    <button type="button" class="search-clear" id="searchPageClear" aria-label="پاک کردن">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+</div>
+
+    <div class="chips" id="searchChips">
+      <button type="button" class="chip" data-genre="28">اکشن</button>
+      <button type="button" class="chip" data-genre="35">کمدی</button>
+      <button type="button" class="chip" data-genre="27">ترسناک</button>
+      <button type="button" class="chip" data-genre="10749">عاشقانه</button>
+      <button type="button" class="chip" data-genre="878">علمی‌تخیلی</button>
+      <button type="button" class="chip" data-genre="16">انیمیشن</button>
+      <button type="button" class="chip" data-genre="80">جنایی</button>
+      <button type="button" class="chip" data-genre="99">مستند</button>
+      <button type="button" class="chip" data-genre="18">درام</button>
+    </div>
+
+    <h2 class="search-heading" id="searchHeading">ویژه</h2>
+
+    <section id="searchResults"></section>
+
+  </section>
+</section>
+
+
+
+
+
+
+
         <section class="tab-content" id="tab5"></section>
 
 

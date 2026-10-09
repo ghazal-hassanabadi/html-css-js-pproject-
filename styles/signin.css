@@ -63,7 +63,7 @@
 
 }
 
-/*------------------------------signup / login (mobile)---------------------*/
+/*------------------------------signup (mobile)---------------------*/
 
 * {
   box-sizing: border-box; margin: 0; padding: 0;
@@ -106,7 +106,7 @@ input {
 }
 
 .btnUser{
-    background-color: var(--surface);
+    background-color: var(--primary);
     display: flex;
     align-items: center;
     gap: 5px;
@@ -228,7 +228,7 @@ input {
     background: var(--primary);
     color: var(--white);
     border-color: var(--primary);
-    box-shadow: 0 0 18px rgba(107, 78, 66, 0.5);
+    box-shadow: 0 0 18px rgba(63, 43, 8, 0.66);
 }
 
 .tablinks 
@@ -334,7 +334,7 @@ input {
   font-family: inherit;
   font-size: 14px;
   font-weight: 700;
-  color: var(--black);
+  color: var(--white);
   background: var(--menu-desktop-bg);
   border: 2px solid var(--menu-desktop-bg);
   border-radius: 10px;
@@ -381,7 +381,7 @@ input {
 }
 
 .forgot-link:hover {
-  color: var(--surface);
+  color: var(--black);
 }
 
 .create-link {
@@ -394,7 +394,7 @@ input {
 }
 
 .create-link:hover {
-  color: var(--surface);
+  color: var(--black);
 }
 
 
@@ -535,7 +535,7 @@ input {
 }
 
 .social-menu a:hover {
-  color: var(--menu-desktop-bg);
+  color: var(--menu-desktop-bgg);
   border-color: var(--menu-desktop-bg);
 }
 
@@ -693,7 +693,6 @@ body.dark-mode {
   --primary: #41131e;
   --primary-hover: #6b2335;
   --primary-dark: #5a1c2b;
-  --black: #050505;
   --menu-desktop-bg: #876151;
   --menu-desktop-text: #f5ebf1;
   --modal-dwn-hover: #a67b69;
@@ -824,7 +823,7 @@ body.dark-mode .home-active::after {
 }
 
 
-/* ---------- جعبه‌ی فرم در حالت تاریک ---------- */
+/* ---------- جعبه‌ی فرم ثبت نام در حالت تاریک ---------- */
 
 body.dark-mode .signin-name {
   color: var(--text);
@@ -854,10 +853,6 @@ body.dark-mode #signupForm input {
 
 body.dark-mode #signupForm input:focus {
   border-color: var(--menu-desktop-bg);
-}
-
-body.dark-mode #signupForm button[type="submit"] {
-  color: var(--white);
 }
 
 body.dark-mode #signupForm button[type="submit"]:hover {
@@ -1015,7 +1010,6 @@ body.dark-mode #signupForm button[type="submit"]:hover {
     width: clamp(90px, 9vw, 140px);
     font-size: clamp(14px, 1.5vw, 20px);
     background-color:var(--menu-desktop-bg);
-    color: var(--black);
     padding: 0;
 
   }
@@ -1077,10 +1071,6 @@ body.dark-mode #signupForm button[type="submit"]:hover {
 
   .footer-text {
     font-size: 13px;
-  }
-
-  body.dark-mode .tablinks-active {
-    color: var(--white);
   }
 
 }

@@ -6,6 +6,8 @@ import { initSocialDropdown } from "./dropdown.js";
 import { initSidebar } from "./slidebar.js";
 import { initLogin } from "./login.js";
 import { initSignup } from "./signin.js";
+import { initAnimationFilter } from "./animation-filter.js";
+import { initSearchPage } from "./search.js";
 
 import {
   getNewMovies,
@@ -31,6 +33,10 @@ initSidebar();
 initLogin();
 
 initSignup();
+
+initAnimationFilter();
+
+initSearchPage();
 
 async function loadSection(container, getData, render, errorText) {
 

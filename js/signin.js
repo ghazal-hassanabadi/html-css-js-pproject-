@@ -1,3 +1,13 @@
+const allowedEmailEndings = [
+  "com",
+  "ir",
+  "org",
+  "net",
+  "edu",
+  "gov",
+  "info"
+];
+
 export function initSignup() {
 
   const fullnameInput = document.getElementById("fullname");
@@ -12,13 +22,9 @@ export function initSignup() {
   const passwordInput = document.getElementById("password");
   const passwordError = document.getElementById("passwordError");
 
-  const confirmInput = document.getElementById("confirmPassword");
-  const confirmError = document.getElementById("confirmPasswordError");
-
   const form = document.getElementById("signupForm");
 
   const togglePassword = document.getElementById("togglePassword");
-  const toggleConfirm = document.getElementById("toggleConfirmPassword");
 
   const successMessage = document.getElementById("successMessage");
 
@@ -32,11 +38,8 @@ export function initSignup() {
     !usernameError ||
     !passwordInput ||
     !passwordError ||
-    !confirmInput ||
-    !confirmError ||
     !form ||
     !togglePassword ||
-    !toggleConfirm ||
     !successMessage
   ) {
     return;
@@ -57,17 +60,26 @@ export function initSignup() {
 
   function validateEmail() {
 
-    // متن، بعد @، بعد متن، بعد نقطه، بعد متن
+    const email = emailInput.value.trim().toLowerCase();
+
+    // شکل کلی: متن، بعد @، بعد متن، بعد نقطه، بعد متن
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (emailPattern.test(emailInput.value.trim())) {
-      emailError.textContent = "";
-      return true;
+    if (!emailPattern.test(email)) {
+      emailError.textContent = "ایمیل معتبر نیست";
+      return false;
     }
 
-    emailError.textContent =
-      "ایمیل معتبر نیست؛ باید شامل @ و نقطه باشد";
-    return false;
+    // پسوند ایمیل: هر چیزی بعد از آخرین نقطه
+    const ending = email.slice(email.lastIndexOf(".") + 1);
+
+    if (!allowedEmailEndings.includes(ending)) {
+      emailError.textContent = "پسوند ایمیل مجاز نیست";
+      return false;
+    }
+
+    emailError.textContent = "";
+    return true;
   }
 
   function validateUsername() {
@@ -84,29 +96,14 @@ export function initSignup() {
 
   function validatePassword() {
 
-    if (passwordInput.value.length >= 6) {
+    // رمز را خود کاربر انتخاب می‌کند، فقط طولش باید بیشتر از ۶ باشد
+    if (passwordInput.value.length > 6) {
       passwordError.textContent = "";
       return true;
     }
 
-    passwordError.textContent = "رمز باید حداقل ۶ کاراکتر باشد";
+    passwordError.textContent = "رمز باید بیشتر از ۶ کاراکتر باشد";
     return false;
-  }
-
-  function validateConfirm() {
-
-    if (confirmInput.value === "") {
-      confirmError.textContent = "تکرار رمز عبور را وارد کنید";
-      return false;
-    }
-
-    if (confirmInput.value !== passwordInput.value) {
-      confirmError.textContent = "رمز عبور و تکرار آن یکسان نیستند";
-      return false;
-    }
-
-    confirmError.textContent = "";
-    return true;
   }
 
 
@@ -136,21 +133,9 @@ export function initSignup() {
 
   usernameInput.addEventListener("input", validateUsername);
 
-  passwordInput.addEventListener("input", function () {
-
-    validatePassword();
-
-    // اگر تکرار رمز قبلاً پر شده، با تغییر رمز دوباره چک بشه
-    if (confirmInput.value !== "") {
-      validateConfirm();
-    }
-
-  });
-
-  confirmInput.addEventListener("input", validateConfirm);
+  passwordInput.addEventListener("input", validatePassword);
 
   setupEye(togglePassword, passwordInput);
-  setupEye(toggleConfirm, confirmInput);
 
 
   form.addEventListener("submit", function (event) {
@@ -162,15 +147,8 @@ export function initSignup() {
     const emailOk = validateEmail();
     const usernameOk = validateUsername();
     const passwordOk = validatePassword();
-    const confirmOk = validateConfirm();
 
-    if (
-      fullnameOk &&
-      emailOk &&
-      usernameOk &&
-      passwordOk &&
-      confirmOk
-    ) {
+    if (fullnameOk && emailOk && usernameOk && passwordOk) {
       successMessage.classList.remove("is-error");
       successMessage.textContent = "ثبت نام موفق بود";
     } else {
