@@ -83,6 +83,7 @@ body {
 
 
 
+
 button,
 input {
   font-family: inherit;
@@ -106,7 +107,7 @@ input {
 }
 
 .btnUser{
-    background-color: var(--primary);
+    background-color: var(--surface);
     display: flex;
     align-items: center;
     gap: 5px;
@@ -199,14 +200,16 @@ input {
     justify-content: center;
     gap: 8px;
     margin-bottom: 16px;
+    
     flex-wrap: wrap;
 }
 
 .tablinks{
     
-    padding:4px 6px;
+    padding:6px 10px;
+    
     border: none;
-    font-size: 12px;
+    font-size: 10px;
     
 
     background:var(--bg-menu);
@@ -220,7 +223,7 @@ input {
 .tablinks-active {
 
     border-radius: 8px;
-    padding:4px 15px;
+    padding:50px;
     border: none;
     font-size: 12px;
 
@@ -228,7 +231,7 @@ input {
     background: var(--primary);
     color: var(--white);
     border-color: var(--primary);
-    box-shadow: 0 0 18px rgba(63, 43, 8, 0.66);
+    box-shadow: 0 0 18px rgba(107, 78, 66, 0.5);
 }
 
 .tablinks 
@@ -236,6 +239,7 @@ input {
   background: var(--primary);
 
 }
+
 
 /*--------------------form------------------------*/
 
@@ -719,6 +723,10 @@ body.dark-mode .btnUser {
   background: var(--surface);
 }
 
+ body.dark-mode .welcome{
+  background-color:#1c0108;
+}
+
 body.dark-mode .user-btn,
 body.dark-mode .search-box {
   color: var(--text);
@@ -988,7 +996,6 @@ body.dark-mode #signupForm button[type="submit"]:hover {
 
 @media (min-width: 1100px) {
 
-
   .welcome img {
     width: 100px;
     
@@ -1010,14 +1017,15 @@ body.dark-mode #signupForm button[type="submit"]:hover {
     width: clamp(90px, 9vw, 140px);
     font-size: clamp(14px, 1.5vw, 20px);
     background-color:var(--menu-desktop-bg);
+    color: var(--black);
     padding: 0;
 
   }
 
   .tablinks{
     width: clamp(90px, 9vw, 140px);
-    font-size: clamp(14px, 1.5vw, 20px);
-    padding: 0;
+    font-size: 18px;
+    padding: 5px 7px;
     color:var(--menu-desktop-text) ;
 
   }

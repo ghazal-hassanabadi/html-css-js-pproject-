@@ -1,56 +1,57 @@
 :root {
 
-  /* پالت تصویر:
-     زرشکی #5B0F1A | قهوه‌ای تیره #3B2A24 | قهوه‌ای #6B4E42 | کرم #B79E8C | سفید شیری #F7F3EE */
+  /* پالت: زرشکی اصلی #4A171F | کرم پس‌زمینه #F2E5D8 | کرم تیره #E5D1BF
+     کرم روشن #FFF8F0 | زرشکی تیره #321116 | زرشکی هاور #6B2934
+     متن اصلی #2B1718 | متن فرعی #947D70 */
 
-  --primary: #6B4E42;
-  --primary-hover: #5B0F1A;
-  --primary-dark: #3B2A24;
-  --bg-menu: rgba(107, 78, 66, 0.25);
-  --color-hero-overlay: #b79e8c30;
-  --black: #3B2A24;
-  --menu-desktop-bg: #B79E8C;
-  --menu-desktop-text: #F7F3EE;
-  --background: #c2b5ab;
-  --surface: #35070e;
-  --surface-light: #3B2A24;
-  --surface-hover: #6B4E42;
-  --filter-bg: #5b0f1a;
+  --primary: #4A171F;
+  --primary-hover: #6B2934;
+  --primary-dark: #321116;
+  --bg-menu: rgba(74, 23, 31, 0.15);
+  --color-hero-overlay: #e5d1bf30;
+  --black: #2B1718;
+  --menu-desktop-bg: #947D70;
+  --menu-desktop-text: #FFF8F0;
+  --background: #F2E5D8;
+  --surface: #321116;
+  --surface-light: #4A171F;
+  --surface-hover: #6B2934;
+  --filter-bg: #4A171F;
   --white: #ffffff;
-  --text: #F7F3EE;
-  --text-secondary: #3B2A24;
-  --text-muted: #B79E8C;
-  --modal-close-bg: rgba(247, 243, 238, 0.08);
-  --modal-btn-bg-hover: rgba(183, 158, 140, 0.45);
-  --modal-btn-bg: rgba(183, 158, 140, 0.36);
-  --modal-dwn-hover: #F7F3EE;
-  --model-box-sh: #3B2A24;
+  --text: #FFF8F0;
+  --text-secondary: #2B1718;
+  --text-muted: #947D70;
+  --modal-close-bg: rgba(255, 248, 240, 0.08);
+  --modal-btn-bg-hover: rgba(148, 125, 112, 0.45);
+  --modal-btn-bg: rgba(148, 125, 112, 0.36);
+  --modal-dwn-hover: #FFF8F0;
+  --model-box-sh: #321116;
   --color-btn-bg: rgba(0, 0, 0, 0.4);
   --color-btn-bg-hover: rgba(0, 0, 0, 0.7);
   --color-btn-icon: #ffffff;
-  --background-color: #F7F3EE;
-  --menu-bar-bg:#6B4E42;
-  --menu-bar-box: #34070d;
+  --background-color: #FFF8F0;
+  --menu-bar-bg: #4A171F;
+  --menu-bar-box: #321116;
   --slider-width: 300px;
   --slider-height: 400px;
 
   /* ===== رنگ وضعیت‌ها ===== */
   --success: #22c55e;
-  --warning: #B79E8C;
+  --warning: #E5D1BF;
   --error: #ef4444;
   --info: #3b82f6;
 
   /* ===== Border ===== */
-  --border: #3B2A24;
-  --border-light: #6B4E42;
-  --border-red: rgba(183, 158, 140, 0.55);
+  --border: #321116;
+  --border-light: #6B2934;
+  --border-red: rgba(229, 209, 191, 0.5);
 
   /* ===== سایه ===== */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.6);
 
-  --red-glow: 0 0 20px rgba(107, 78, 66, 0.4);
+  --red-glow: 0 0 20px rgba(107, 41, 52, 0.45);
 
 
   /* ===== فونت ===== */
@@ -82,7 +83,6 @@ body {
 }
 
 
-
 button,
 input {
   font-family: inherit;
@@ -99,14 +99,14 @@ input {
 
 
 .welcome img {
-    width: clamp(120px, 30vw, 220px);
+    width: clamp(130px, 30vw, 220px);
     height: auto;
     padding: 0;
     margin: 0;
 }
 
 .btnUser{
-    background-color: var(--surface);
+    background-color: var(--primary);
     display: flex;
     align-items: center;
     gap: 5px;
@@ -114,29 +114,36 @@ input {
     margin-bottom: 10px;
 }
 
-.user-btn{
-    
-   
-    border-radius: 55px;
-    padding: 5px;
+.user-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
     height: 35px;
     width: 35px;
     font-size: 15px;
-    
     margin-right: 8px;
+    border-radius: 55px;
 
+    cursor: pointer;
+    color: var(--text);
 
     background: rgba(255, 255, 255, 0.075);
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     transition: var(--transition-normal);
-
 }
 
 .user-btn:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color:var(--text-secondary);
+}
+
+.user-btn i {
+    pointer-events: none;
+    line-height: 1;
 }
 
 
@@ -162,7 +169,7 @@ input {
     padding: 8px 36px 8px 12px;
     border-radius: 10px;
     border: none;
-    width: calc(100% - 10px);
+    width: calc(100% - 15px);
     height: 30px;
     margin: 5px;
     font-size: 10px;
@@ -197,9 +204,14 @@ input {
 .menu {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 9px;
     margin-bottom: 16px;
     flex-wrap: wrap;
+    
+
+    
+    
+    
 }
 
 .tablinks{
@@ -207,7 +219,7 @@ input {
     padding:4px 6px;
     border: none;
     font-size: 12px;
-    
+    width: auto;
 
     background:var(--bg-menu);
     color: var(--text-secondary);
@@ -228,13 +240,27 @@ input {
     background: var(--primary);
     color: var(--white);
     border-color: var(--primary);
-    box-shadow: 0 0 18px rgba(107, 78, 66, 0.5);
+    box-shadow: 0 0 18px rgba(63, 43, 8, 0.66);
 }
 
 .tablinks 
 .tablinks-active:hover{
   background: var(--primary);
 
+}
+
+
+.home-active{
+    position: relative;
+    overflow: hidden;
+    
+    width: 92%;
+    aspect-ratio: 3 / 4;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    
 }
 
 /*--------------------form------------------------*/
@@ -720,6 +746,10 @@ body.dark-mode .btnUser {
   background: var(--surface);
 }
 
+ body.dark-mode .welcome{
+  background-color:#1c0108;
+}
+
 body.dark-mode .user-btn,
 body.dark-mode .search-box {
   color: var(--text);
@@ -1022,8 +1052,8 @@ body.dark-mode #signupForm button[type="submit"]:hover {
 
   .tablinks{
     width: clamp(90px, 9vw, 140px);
-    font-size: clamp(14px, 1.5vw, 20px);
-    padding: 0;
+    font-size: 18px;
+    padding: 5px 7px;
     color:var(--menu-desktop-text) ;
 
   }
