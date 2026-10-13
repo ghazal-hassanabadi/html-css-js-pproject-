@@ -29,10 +29,9 @@
             </div>
             <section class="menu-desktip">
                 <button class="tablinks-active" data-tab="tab1"> خانه </button>
-                <button class="tablinks" data-tab="tab2"> فیلم ها </button>
-                <button class="tablinks" data-tab="tab3">  انیمیشن  </button>
-                <button class="tablinks" data-tab="tab4"> جستجو </button>
-                <button class="tablinks" data-tab="tab5"> درباره ما </button>
+                <button class="tablinks" data-tab="tab2"> هنرمندان  </button>
+                <button class="tablinks" data-tab="tab3">  جستجو  </button>
+                <button class="tablinks" data-tab="tab4"> تماس با ما </button>
             </section>            
          </div>
 
@@ -47,10 +46,9 @@
 
             <section class="menu">
                 <button class="tablinks-active" data-tab="tab1"> خانه </button>
-                <button class="tablinks" data-tab="tab2"> فیلم ها </button>
-                <button class="tablinks" data-tab="tab3"> انیمیشن  </button>
-                <button class="tablinks" data-tab="tab4"> جستجو </button>
-                <button class="tablinks" data-tab="tab5"> درباره ما </button>
+                <button class="tablinks" data-tab="tab2"> هنرمندان  </button>
+                <button class="tablinks" data-tab="tab3"> جستجو  </button>
+                <button class="tablinks" data-tab="tab4"> تماس با ما </button>
             </section>
 
 
@@ -315,170 +313,253 @@
 
        
             </section>
-
 <!----------------tab2 --------------------->
 <section class="tab-content" id="tab2">
-              
-<main class="movie-page-layout">
 
+  <section class="artists">
 
-  <form id="movieFilterForm">  
+    <div class="artist-head">
 
-    
+      <div class="explore-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="artistInput" placeholder="جستجوی اسم هنرمند...">
+        <button type="button" class="explore-clear" id="artistClear" aria-label="پاک کردن">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
 
-    <section class="movie-filter">
-    <h2 class="filter-title">فیلتر فیلم و سریال</h2>
+      <button type="button" class="filter-toggle" id="artistFilterToggle" aria-expanded="false">
+        <i class="fa-solid fa-sliders"></i>
+        فیلتر
+      </button>
 
- <details class="filter-row">
-    <summary>دسته‌بندی</summary>
-    <div class="filter-row-content">
-        <label><input type="checkbox" name="category" value="movie"/> فیلم</label>
-        <label><input type="checkbox" name="category" value="series" /> سریال</label>
     </div>
- </details>
 
-    
-    <details class="filter-row">
-        <summary>سال تولید </summary>
+    <div class="artist-filters" id="artistFilters">
+
+      <details class="filter-row" >
+        <summary>جنسیت</summary>
         <div class="filter-row-content">
-            <section class="year">
-                <label for="yearFilter">سال تولید </label>
-                <input type="number" id="yearFilter" name="yearFilter" placeholder="" />
-            </section>
-
-
+          <label><input type="radio" name="artistGender" value="all" checked /> همه</label>
+          <label><input type="radio" name="artistGender" value="1" /> زن</label>
+          <label><input type="radio" name="artistGender" value="2" /> مرد</label>
         </div>
-    </details>
+      </details>
 
-    <details class="filter-row">
-        <summary>ژانر   </summary>
+      <details class="filter-row" >
+        <summary>شناخته‌شده برای</summary>
         <div class="filter-row-content">
-            <label><input type="checkbox" name="genre" value="romance" /> عاشقانه</label>
-            <label><input type="checkbox" name="genre" value="horror"/> ترسناک</label>
-            <label><input type="checkbox" name="genre" value="crime"/> جنایی</label>
-            <label><input type="checkbox" name="genre" value="comedy"/> کمدی </label>
-
-            <label><input type="checkbox" name="genre" value="drama"/> درام </label>
-
-
+          <label><input type="radio" name="artistKnown" value="all" checked /> همه</label>
+          <label><input type="radio" name="artistKnown" value="movie" /> فیلم</label>
+          <label><input type="radio" name="artistKnown" value="tv" /> سریال</label>
         </div>
-    </details>
+      </details>
 
-    <button type="button" class="btn-primary" id="applyMovieFilterBtn">اعمال فیلتر</button>
-   <button type="button" class="btn-secondary" id="clearMovieFilterBtn">حذف فیلتر</button>
-</section>
-  </form>
+    </div>
 
-<section id="movieList">
+    <h2 class="explore-count" id="artistCount">هنرمندان محبوب</h2>
+
+    <section id="artistList"></section>
+
+  </section>
 
 </section>
-</main>
-
-            </section>
-        </section>
-
         
 
-        <!--------------انیمیشن--------------------------->
-        <section class="tab-content" id="tab3">
-          <section class="movie-page-layout">
-
-  <form id="animationFilterForm">
-
-    <section class="movie-filter">
-      <h2 class="filter-title">فیلتر انیمیشن</h2>
-
-      <details class="filter-row">
-        <summary>رده سنی</summary>
-        <div class="filter-row-content">
-          <label><input type="radio" name="age" value="g" /> همه سنین</label>
-          <label><input type="radio" name="age" value="pg" /> با نظارت والدین</label>
-          <label><input type="radio" name="age" value="pg13" /> ۱۳ سال به بالا</label>
-          <label><input type="radio" name="age" value="r" /> ۱۷ سال به بالا</label>
-        </div>
-      </details>
-
-      <details class="filter-row">
-        <summary>سال تولید</summary>
-        <div class="filter-row-content">
-          <section class="year">
-            <label for="animationYearFilter">سال</label>
-            <input type="number" id="animationYearFilter" name="animationYearFilter" />
-          </section>
-        </div>
-      </details>
-
-      <details class="filter-row">
-        <summary>ژانر</summary>
-        <div class="filter-row-content">
-          <label><input type="checkbox" name="animationGenre" value="family" /> خانوادگی</label>
-          <label><input type="checkbox" name="animationGenre" value="comedy" /> کمدی</label>
-          <label><input type="checkbox" name="animationGenre" value="adventure" /> ماجراجویی</label>
-          <label><input type="checkbox" name="animationGenre" value="fantasy" /> فانتزی</label>
-          <label><input type="checkbox" name="animationGenre" value="action" /> اکشن</label>
-          <label><input type="checkbox" name="animationGenre" value="scifi" /> علمی‌تخیلی</label>
-          <label><input type="checkbox" name="animationGenre" value="drama" /> درام</label>
-        </div>
-      </details>
-
-      <button type="button" class="btn-primary" id="applyAnimationFilterBtn">اعمال فیلتر</button>
-      <button type="button" class="btn-secondary" id="clearAnimationFilterBtn">حذف فیلتر</button>
-    </section>
-
-  </form>
-
-  <section id="animationList"></section>
-
-</section>
-        </section>
 
 <!---------------------------------------جستجو------------------------------------>
 
-        <section class="tab-content" id="tab4">
-  <section class="search-page">
+<section class="tab-content" id="tab3">
+ 
+  <section class="explore">
+ 
+    <section class="explore-head">
+ 
+      <div class="explore-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="exploreInput" placeholder="جستجوی فیلم، سریال، بازیگر و ...">
+        <button type="button" class="explore-clear" id="exploreClear" aria-label="پاک کردن">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </section>
+ 
+ 
+    <section class="explore-body">
+ 
+      <div class="explore-bar">
+ 
+        <div class="explore-types" id="exploreTypes">
+          <button type="button" class="type-chip active" data-type="all">همه</button>
+          <button type="button" class="type-chip" data-type="movie">فیلم‌ها</button>
+          <button type="button" class="type-chip" data-type="tv">سریال‌ها</button>
+          <button type="button" class="type-chip" data-type="animation">انیمیشن‌ها</button>
+        </div>
+ 
+        <button type="button" class="filter-toggle" id="filterToggle" aria-expanded="false">
+          <i class="fa-solid fa-sliders"></i>
+          فیلتر
+        </button>
+ 
+      </div>
+ 
+ 
+      <form class="movie-filter explore-filters" id="exploreFilters">
+ 
+        <h2 class="filter-title">فیلتر جستجو</h2>
+ 
+        <details class="filter-row" open>
+          <summary>ژانر</summary>
+          <div class="filter-row-content">
+            <label><input type="checkbox" name="genre" value="28" /> اکشن</label>
+            <label><input type="checkbox" name="genre" value="18" /> درام</label>
+            <label><input type="checkbox" name="genre" value="35" /> کمدی</label>
+            <label><input type="checkbox" name="genre" value="53" /> هیجان‌انگیز</label>
+            <label><input type="checkbox" name="genre" value="878" /> علمی‌تخیلی</label>
+            <label><input type="checkbox" name="genre" value="12" /> ماجراجویی</label>
+            <label><input type="checkbox" name="genre" value="27" /> ترسناک</label>
+            <label><input type="checkbox" name="genre" value="36" /> تاریخی</label>
+            <label><input type="checkbox" name="genre" value="99" /> مستند</label>
+          </div>
+        </details>
+ 
+        <details class="filter-row">
+          <summary>امتیاز</summary>
+          <div class="filter-row-content">
+            <div class="rating-row">
+              <label for="ratingMin">حداقل امتیاز: <output id="ratingOutput">0</output></label>
+              <input type="range" id="ratingMin" name="ratingMin" min="0" max="10" step="0.5" value="0" />
+            </div>
+          </div>
+        </details>
+ 
+        <details class="filter-row">
+          <summary>سال انتشار</summary>
+          <div class="filter-row-content">
+            <div class="year-range">
+              <input type="number" id="yearFrom" name="yearFrom" placeholder="از سال" />
+              <input type="number" id="yearTo" name="yearTo" placeholder="تا سال" />
+            </div>
+          </div>
+        </details>
+ 
 
-<div class="search-bar">
-  <div class="search-field">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" id="searchPageInput" placeholder="جستجوی فیلم، سریال، بازیگر و ..." />
-    <button type="button" class="search-clear" id="searchPageClear" aria-label="پاک کردن">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-  </div>
-</div>
-
-    <div class="chips" id="searchChips">
-      <button type="button" class="chip" data-genre="28">اکشن</button>
-      <button type="button" class="chip" data-genre="35">کمدی</button>
-      <button type="button" class="chip" data-genre="27">ترسناک</button>
-      <button type="button" class="chip" data-genre="10749">عاشقانه</button>
-      <button type="button" class="chip" data-genre="878">علمی‌تخیلی</button>
-      <button type="button" class="chip" data-genre="16">انیمیشن</button>
-      <button type="button" class="chip" data-genre="80">جنایی</button>
-      <button type="button" class="chip" data-genre="99">مستند</button>
-      <button type="button" class="chip" data-genre="18">درام</button>
-    </div>
-
-    <h2 class="search-heading" id="searchHeading">ویژه</h2>
-
-    <section id="searchResults"></section>
-
+ 
+      </form>
+ 
+ 
+      <h2 class="explore-count" id="exploreCount">ویژه</h2>
+ 
+      <section id="exploreResults"></section>
+ 
+      <nav class="pagination" id="pagination" aria-label="صفحه‌بندی"></nav>
+ 
+    </section>
+ 
   </section>
+ 
+</section>
+ 
+
 </section>
 
 
 
 
+<!-------------------------------تماس با ما ----------------------------------------->
 
+<section class="tab-content" id="tab4">
 
+  <section class="contact">
 
-        <section class="tab-content" id="tab5"></section>
+    <div class="contact-head">
 
+      <h2 class="contact-title">پیشنهاد، انتقاد یا <span>سوالی</span> داری؟</h2>
+      <p class="contact-subtitle">فرم زیر رو پر کن یا از طریق تلگرام با ما در ارتباط باش — هر پیام رو می‌خونیم.</p>
+    </div>
+
+    <div class="contact-body">
+
+      <form class="contact-form" id="contactForm" novalidate>
+
+        <h3 class="contact-form-title">پیام خودت رو بفرست</h3>
+        <p class="contact-form-text">پرسش، درخواست فیلم، یا گزارش مشکل — هرچی هست، اینجا بنویس.</p>
+
+        <div class="contact-fields">
+
+          <div class="contact-field">
+            <label for="contactName">نام و نام خانوادگی</label>
+            <input type="text" id="contactName" placeholder="مثلاً سارا احمدی" autocomplete="name">
+            <p class="contact-error" id="contactNameError"></p>
+          </div>
+
+          <div class="contact-field">
+            <label for="contactEmail">ایمیل</label>
+            <input type="email" id="contactEmail" placeholder="you@example.com" autocomplete="email">
+            <p class="contact-error" id="contactEmailError"></p>
+          </div>
+
+          <div class="contact-field contact-field-wide">
+            <label for="contactMessage">متن پیام</label>
+            <textarea id="contactMessage" placeholder="پیامت رو اینجا بنویس..."></textarea>
+            <p class="contact-error" id="contactMessageError"></p>
+          </div>
+
+        </div>
+
+        <button type="submit" class="contact-submit">
+          <i class="fa-solid fa-paper-plane"></i>
+          ارسال پیام
+        </button>
+
+        <p class="contact-note">با ارسال این فرم، پیام شما مستقیم برای تیم پشتیبانی ارسال می‌شود.</p>
+
+      </form>
+
+      <aside class="contact-side">
+
+        <article class="contact-card">
+          
+          <h3>پیام سریع‌تر می‌خوای؟</h3>
+          <p>از طریق تلگرام هم می‌تونی مستقیم با تیم پاپ‌کورن در ارتباط باشی.</p>
+          <a href="#" class="contact-telegram-btn">
+            پیام در تلگرام
+            <i class="fa-solid fa-arrow-left"></i>
+          </a>
+        </article>
+
+        <article class="contact-card contact-time">
+          <span class="contact-card-icon"><i class="fa-regular fa-clock"></i></span>
+          <div>
+            <h3>زمان پاسخ‌گویی</h3>
+            <p>پیام‌های پشتیبانی معمولاً در کمتر از ۲۴ ساعت بررسی می‌شوند.</p>
+          </div>
+        </article>
+
+        <article class="contact-card contact-links">
+          <h3>شاید این صفحات هم کمک کنن</h3>
+          <a href="#" class="contact-link">
+            <span>سوالات متداول</span>
+            <i class="fa-solid fa-arrow-left"></i>
+          </a>
+          <a href="#" class="contact-link">
+            <span>نرم‌افزارهای پخش فیلم</span>
+            <i class="fa-solid fa-arrow-left"></i>
+          </a>
+        </article>
+
+      </aside>
+
+    </div>
+
+  </section>
+
+</section>
 
     </main>
 
   
-
+<!-------------------------------------------footer------------------------------------>
 
 <footer class="site-footer">
 
@@ -568,7 +649,7 @@
 
         <a href="#" class="side-item">
       <i class="fa-solid fa-crown"></i>
-      <span> درباره ما</span>
+      <span> علاقه مندی </span>
     </a>
 
   </nav>

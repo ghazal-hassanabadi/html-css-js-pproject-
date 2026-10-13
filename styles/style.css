@@ -88,6 +88,15 @@ header {
   background-color: var(--primary);
 }
 
+
+.modal-header,
+body.dark-mode .modal-header {
+  background-color: transparent;
+  flex-direction: row;
+  padding: 0;
+  margin-bottom: 0;
+}
+
 body.dark-mode header {
   background-color: #22010a;
 }
@@ -269,12 +278,10 @@ input {
 }
 
 .tablinks:hover{
-   background: var(--primary);
+   background: var(--menu-desktop-bg);
 
 }
-.tablinks-active:hover {
-  
-}
+
 
 
 .home-active{
@@ -1162,7 +1169,301 @@ body.no-scroll {
   background-color: var(--menu-desktop-bg);
 }
 
+/*-----------------------------------search-filter----------------------------------------------------*/
 
+
+.explore {
+  padding-bottom: 20px;
+}
+
+/* ---------- کادر جستجو ---------- */
+
+.explore-head {
+  padding: 0 14px;
+  margin: 8px 0 16px;
+}
+
+.explore-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 14px;
+  background: var(--background-color);
+  border: 1.5px solid var(--menu-desktop-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-normal),
+              box-shadow var(--transition-normal);
+}
+
+.explore-search:focus-within {
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 0 3px var(--modal-btn-bg-hover);
+}
+
+.explore-search > i {
+  font-size: 15px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.explore-search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.explore-search input::placeholder {
+  color: var(--text-muted);
+}
+
+.explore-clear {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  background: var(--bg-menu);
+  border: none;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.explore-clear.visible {
+  display: flex;
+}
+
+.explore-clear:hover {
+  color: var(--white);
+  background: var(--primary-dark);
+  transform: rotate(90deg);
+}
+
+
+/* ---------- نوار نوع محتوا و دکمه فیلتر ---------- */
+
+.explore-body {
+  padding: 0 14px;
+}
+
+.explore-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.explore-types {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.explore-types::-webkit-scrollbar {
+  display: none;
+}
+
+.type-chip {
+  flex-shrink: 0;
+  padding: 7px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--text);
+  background: var(--filter-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: var(--transition-fast);
+}
+
+.type-chip:hover {
+  border-color: var(--menu-desktop-bg);
+  background-color: var(--surface);
+}
+
+.type-chip.active {
+  color: var(--white);
+  background: var(--primary-dark);
+  border-color: var(--menu-desktop-bg);
+}
+
+.filter-toggle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1.5px solid var(--menu-desktop-bg);
+  border-radius: 20px;
+  transition: var(--transition-fast);
+}
+
+.filter-toggle:hover {
+  border-color: var(--surface);
+}
+
+.filter-toggle[aria-expanded="true"] {
+  color: var(--white);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+summary {
+  width: 265px;
+}
+
+
+/* ---------- پنل فیلتر (از استایل فیلتر قبلی استفاده می‌کند) ---------- */
+
+.explore-filters {
+  display: none;
+  margin-top: 14px;
+}
+
+.explore-filters.open {
+  display: flex;
+}
+
+
+
+.rating-row {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  
+}
+
+
+
+.rating-row output {
+  font-weight: 700;
+  color: var(--warning);
+}
+
+.rating-row input[type="range"] {
+  width: 100%;
+  accent-color: var(--warning);
+}
+
+.year-range {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+}
+
+.year-range input {
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--text);
+  text-align: right;
+  direction: ltr;
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  transition: var(--transition-fast);
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.year-range input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.year-range input:focus {
+  border-color: var(--warning);
+}
+
+.year-range input::-webkit-outer-spin-button,
+.year-range input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* ---------- تعداد نتایج و کارت‌ها ---------- */
+
+.explore-count {
+  margin: 22px 0 14px;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+#exploreResults {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.state-message {
+  grid-column: 1 / -1;
+}
+
+
+/* ---------- صفحه‌بندی ---------- */
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 40px;
+}
+
+.page-btn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--menu-desktop-bg);
+  border-radius: 8px;
+  transition: var(--transition-fast);
+}
+
+.page-btn:hover:not(:disabled) {
+  background: var(--bg-menu);
+}
+
+.page-btn.active {
+  color: var(--white);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
 /*-------------------------------filter-----------------*/
@@ -1323,51 +1624,6 @@ body.no-scroll {
   appearance: textfield;
 }
 
-.btn-primary {
-  margin-top: 6px;
-  padding: 11px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  color: var(--white);
-  background: var(--filter-bg);
-  border: 2px solid var(--primary-dark);
-  border-radius: 10px;
-  transition: var(--transition-normal);
-}
-
-.btn-primary:hover {
-  color: var(--background-color);
-  background: var(--primary-dark);
-  box-shadow: 0 0 18px var(--modal-btn-bg-hover);
-}
-
-.btn-primary:active {
-  transform: scale(0.98);
-}
-
-.btn-secondary {
-  padding: 11px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  color: var(--text-secondary);
-  background: transparent;
-  border: 2px solid var(--primary-dark);
-  background: var(--filter-bg);
-  border-radius: 10px;
-  transition: var(--transition-normal);
-}
-
-.btn-secondary:hover {
-  color: var(--background);
-  background: var(--primary-dark);
-  box-shadow: 0 0 18px var(--modal-btn-bg-hover);
-}
-
-.btn-secondary:active {
-  transform: scale(0.98);
-}
 
 #movieList,
 #animationList,
@@ -1683,139 +1939,6 @@ body.dark-mode .home-active::after {
 
 
 
-/*-----------------------------------------search---------------------------*/
-
-.search-page {
-  padding: 0 14px;
-  margin-top: 24px;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-
-
-.search-field {
-  position: relative;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  height: 48px;
-  padding: 0 14px;
-  background: var(--background-color);
-  border: 1.5px solid var(--menu-desktop-bg);
-  border-radius: 12px;
-  box-shadow: var(--shadow-sm);
-  transition: border-color var(--transition-normal),
-              box-shadow var(--transition-normal);
-}
-
-.search-field:focus-within {
-  border-color: var(--primary-dark);
-  box-shadow: 0 0 0 3px var(--modal-btn-bg-hover);
-}
-
-.search-field input {
-  flex: 1;
-  min-width: 0;
-  height: 100%;
-  padding: 0 10px 0 0;
-  font-size: 13px;
-  color: var(--text-secondary);
-  background: transparent;
-  border: none;
-  outline: none;
-}
-
-.search-field input::placeholder {
-  color: var(--text-muted);
- 
-}
-
-.search-field > i {
-  order: -1;
-  font-size: 16px;
-  color: var(--text-muted);
-  pointer-events: none;
-  transition: color var(--transition-fast);
-}
-
-.search-clear {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 26px;
-  height: 26px;
-  font-size: 12px;
-  cursor: pointer;
-  color: var(--text-secondary);
-  background: var(--bg-menu);
-  border: none;
-  border-radius: 50%;
-  transition: var(--transition-fast);
-}
-
-.search-clear.visible {
-  display: flex;
-}
-
-.search-clear:hover {
-  color: var(--white);
-  background: var(--primary-dark);
-  transform: rotate(90deg);
-}
-
-.search-field:focus-within > i {
-  color: var(--primary-dark);
-}
-
-.search-field:focus-within i {
-  color: var(--primary-dark);
-}
-
-
-
-.chips {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  
-  margin-top: 16px;
-  padding-bottom: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.chips::-webkit-scrollbar {
-  display: none;
-}
-
-.chip {
-  flex-shrink: 0;
-  padding: 7px 16px;
-  font-size: 15px;
-  cursor: pointer;
-  white-space: nowrap;
-  color: var(--text);
-  background: var(--filter-bg);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  transition: var(--transition-fast);
-}
-
-.chip:hover {
-  border-color: var(--menu-desktop-bg);
-}
-
-.chip.active {
-  color: var(--white);
-  background: var(--primary-dark);
-  border-color: var(--menu-desktop-bg);
-}
 
 .search-heading {
   margin: 28px 0 14px;
@@ -1828,6 +1951,361 @@ body.dark-mode .home-active::after {
 }
 
 
+
+/* ---------- تماس با ما ---------- */
+
+.contact {
+  padding: 8px 14px 20px;
+}
+
+.contact-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.contact-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg-menu);
+  border: 1px solid var(--menu-desktop-bg);
+  border-radius: 20px;
+}
+
+.contact-title {
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.contact-title span {
+  color: var(--menu-desktop-bg);
+}
+
+.contact-subtitle {
+  max-width: 420px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  opacity: 0.75;
+}
+
+.contact-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+
+/* ---------- فرم ---------- */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 16px;
+  color: var(--text-secondary);
+  background: var(--background-color);
+  border: 1px solid var(--menu-desktop-bg);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+}
+
+.contact-form-title {
+  font-size: 17px;
+}
+
+.contact-form-text {
+  margin-top: -8px;
+  font-size: 12px;
+  line-height: 1.8;
+  opacity: 0.75;
+}
+
+.contact-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-field label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--filter-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.contact-field input {
+  height: 46px;
+}
+
+.contact-field textarea {
+  min-height: 130px;
+  padding: 12px 14px;
+  line-height: 1.8;
+  resize: vertical;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: var(--menu-desktop-bg);
+}
+
+.contact-error {
+  font-size: 12px;
+  color: var(--error);
+}
+
+.contact-error:empty {
+  display: none;
+}
+
+.contact-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  align-self: stretch;
+  height: 46px;
+  padding: 0 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--white);
+  background: var(--menu-desktop-bg);
+  border: 2px solid var(--menu-desktop-bg);
+  border-radius: 10px;
+  transition: var(--transition-normal);
+}
+
+.contact-submit:hover {
+  color: var(--black);
+  background: var(--modal-dwn-hover);
+  box-shadow: 0 0 18px var(--modal-btn-bg-hover);
+}
+
+.contact-submit:active {
+  transform: scale(0.98);
+}
+
+.contact-note {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+
+/* ----------  کنار ---------- */
+
+.contact-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  color: var(--text);
+  background: var(--filter-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-card h3 {
+  font-size: 14px;
+}
+
+.contact-card p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: rgba(245, 245, 245, 0.7);
+}
+
+.contact-card-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+.contact-telegram-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--white);
+  background: var(--menu-desktop-bg);
+  border-radius: 10px;
+  transition: var(--transition-normal);
+}
+
+.contact-telegram-btn:hover {
+  color: var(--black);
+  background: var(--modal-dwn-hover);
+  box-shadow: 0 0 18px var(--modal-btn-bg-hover);
+}
+
+.contact-time {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-links {
+  gap: 0;
+}
+
+.contact-links h3 {
+  margin-bottom: 10px;
+  color: var(--menu-desktop-bg);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 13px;
+  text-decoration: none;
+  color: var(--text);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: color var(--transition-fast);
+}
+
+.contact-link i {
+  color: var(--menu-desktop-bg);
+  transition: transform var(--transition-fast);
+}
+
+.contact-link:hover {
+  color: var(--menu-desktop-bg);
+}
+
+.contact-link:hover i {
+  transform: translateX(-4px);
+}
+
+
+
+/* ----------------------------هنرمندان-------------------------------*/
+
+/* ---------- هنرمندان ---------- */
+
+.artists {
+  padding: 8px 14px 0;
+}
+
+#artistList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 10px;
+  margin-bottom: 24px;
+}
+
+
+
+.artist-search {
+  margin-bottom: 12px;
+}
+
+#artistTypes,
+#artistGender {
+  margin-bottom: 10px;
+}
+
+.artist-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.artist-head .explore-search {
+  flex: 1;
+  min-width: 0;
+}
+
+/* در دسکتاپ دکمه‌ی فیلتر مخفی می‌شد؛ اینجا همیشه نشان داده شود */
+.artist-head .filter-toggle {
+  display: flex;
+}
+
+.artist-filters {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding: 16px;
+  background: var(--background-color);
+  border: 1px solid var(--menu-desktop-bg);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+}
+
+.artist-filters.open {
+  display: flex;
+}
+
+.artist-filters .filter-row {
+  flex: 0 0 auto;
+  min-width: 0;
+  
+}
+
+
+
+.artist-filters .filter-row-content {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#artistTypes {
+  margin-bottom: 10px;
+}
 
 
 /*------------------------------tablet---------------------*/
@@ -1978,7 +2456,8 @@ header {
 }
 .tablinks-active {
     height: 30px;
-    width: 90px;
+     width: auto;
+    padding: 4px 6px;
     
     font-size: 14px;
 
@@ -1986,7 +2465,8 @@ header {
 }
 
 .tablinks {
-    width: 90px;
+    width: auto;
+    padding: 4px 6px;
     
     font-size: 15px;
     height: 30px;
@@ -2242,6 +2722,129 @@ header {
   }
 
 
+
+  /*search*/
+
+  
+  .explore-head,
+  .explore-body {
+    padding-inline: 25px;
+  }
+ 
+  .explore-search {
+    height: 54px;
+    padding-inline: 18px;
+  }
+ 
+  .explore-search > i {
+    font-size: 17px;
+  }
+ 
+  .explore-search input {
+    font-size: 15px;
+  }
+ 
+  .type-chip {
+    padding: 8px 22px;
+    font-size: 15px;
+  }
+ 
+  .filter-toggle {
+    height: 40px;
+    padding: 0 18px;
+    font-size: 14px;
+  }
+ 
+  .movie-filter.explore-filters {
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+ 
+  .explore-count {
+    margin: 28px 0 16px;
+    font-size: 22px;
+  }
+ 
+  #exploreResults {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+ 
+  .page-btn {
+    min-width: 38px;
+    height: 38px;
+    font-size: 14px;
+  }
+ 
+  /* اسم تب جدید بلندتر است و داخل ۹۰ پیکسل جا نمی‌شود */
+  .tablinks,
+  .tablinks-active {
+    width: auto;
+    min-width: 90px;
+    padding-inline: 14px;
+    white-space: nowrap;
+  }
+
+    .contact {
+    padding: 16px 25px 30px;
+  }
+
+  .contact-title {
+    font-size: 32px;
+  }
+
+  .contact-subtitle {
+    font-size: 14px;
+  }
+
+  .contact-form {
+    padding: 28px 26px;
+  }
+
+  .contact-fields {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-field-wide {
+    grid-column: 1 / -1;
+  }
+
+  .contact-submit {
+    align-self: flex-start;
+  }
+
+  .artists {
+    padding: 8px 25px 0;
+  }
+
+  #artistList {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 24px 16px;
+  }
+
+  .actor-job {
+    font-size: 12px;
+  }
+
+  .artist-filters {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .artist-filters .filter-row {
+    flex: 1;
+  }
+
+  .artist-filters .filter-row-content {
+    grid-template-columns: 1fr;
+  }
+
+
+
+
+
+
  }
 
 
@@ -2265,8 +2868,8 @@ header {
     header {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 8px 25px;
+    gap: 10px;
+    padding: 4px 5px;
     margin-bottom: 10px;
     background-color: var(--primary);
   }
@@ -2284,7 +2887,7 @@ header {
     order: 1;
     margin: 0;
     transform: none;
-    margin-right: 16px;
+    margin-right: 30px;
   }
 
   .search-wrapper {
@@ -2308,11 +2911,11 @@ header {
   }
 
   .search-wrapper:focus-within {
-    width: clamp(220px, 20vw, 320px);
+    width: 260px;
   }
 
   .search-wrapper:has(.search-box:not(:placeholder-shown)) {
-    width: clamp(220px, 20vw, 320px);
+    width: 70px;
   }
 
     .menu{
@@ -2326,17 +2929,24 @@ header {
 
 
   .tablinks-active{
-    width: clamp(90px, 9vw, 140px);
-    font-size: clamp(14px, 1.5vw, 20px);
+    
+    font-size: 18px;
     background-color:var(--menu-desktop-bg);
-    padding: 0;
+    width: auto;
+    min-width: 0;
+    white-space: nowrap;
+    padding:0;
 
   }
 
   .tablinks{
-    width: clamp(90px, 9vw, 140px);
-    font-size: clamp(14px, 1.5vw, 20px);
-    padding: 0;
+    margin-left: 5px;
+    font-size: 18px;
+    width: auto;
+    min-width: 0;
+    white-space: nowrap;
+      
+    
     color:var(--menu-desktop-text) ;
 
   }
@@ -2511,5 +3121,128 @@ header {
 #tab4{
   margin-top: 50px;
 }
+
+
+
+
+  .explore {
+    max-width: 1520px;
+    margin-inline: auto;
+  }
+ 
+  .explore-head {
+    margin: 24px 0;
+  }
+ 
+  .explore-search {
+    height: 60px;
+  }
+ 
+  .explore-search input {
+    font-size: 16px;
+  }
+ 
+  /* چیدمان دو ستونه: فیلتر سمت راست، نتایج سمت چپ */
+  .explore-body {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      "filters bar"
+      "filters count"
+      "filters results"
+      "filters pager";
+    column-gap: 28px;
+    align-items: start;
+  }
+ 
+  .explore-bar {
+    grid-area: bar;
+  }
+ 
+  .explore-count {
+    grid-area: count;
+    margin: 22px 0 14px;
+  }
+ 
+  #exploreResults {
+    grid-area: results;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+ 
+  .pagination {
+    grid-area: pager;
+  }
+ 
+  /* روی دسکتاپ فیلتر همیشه باز است و دکمه‌ی باز و بسته لازم نیست */
+  .filter-toggle {
+    display: none;
+  }
+ 
+  .movie-filter.explore-filters {
+    grid-area: filters;
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin: 0;
+  }
+ 
+  .explore-filters .filter-title,
+  .explore-filters .filter-row {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+ 
+  .explore-filters .btn-primary,
+  .explore-filters .btn-secondary {
+    flex: 0 0 auto;
+    align-self: stretch;
+    width: 100%;
+    height: 44px;
+    margin: 0;
+  }
+ 
+  .explore-filters .filter-row-content label:has(input[type="checkbox"]) {
+    padding: 6px 10px;
+  }
+ 
+  /* اسم تب جدید بلندتر است و داخل عرض قبلی جا نمی‌شود */
+  .tablinks,
+  .tablinks-active {
+    width: auto;
+    min-width: clamp(90px, 9vw, 140px);
+    padding-inline: 14px;
+    white-space: nowrap;
+  }
+
+
+    .contact {
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+
+  .contact-title {
+    font-size: 40px;
+  }
+
+  .contact-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+    gap: 20px;
+  }
+
+  .contact-form {
+    transform: translateY(-5px);
+  }
+
+
+  .artists {
+    max-width: 1520px;
+    margin-inline: auto;
+  }
+ 
 
 }

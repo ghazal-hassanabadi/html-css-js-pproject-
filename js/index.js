@@ -1,13 +1,12 @@
 import { initTabs } from "./tabs.js";
 import { initSlider } from "./slider.js";
-import { initFilters } from "./filter.js";
 import { initModal } from "./modal.js";
 import { initSocialDropdown } from "./dropdown.js";
 import { initSidebar } from "./slidebar.js";
 import { initLogin } from "./login.js";
 import { initSignup } from "./signin.js";
-import { initAnimationFilter } from "./animation-filter.js";
 import { initSearchPage } from "./search.js";
+import { initArtists } from "./artists.js";
 
 import {
   getNewMovies,
@@ -22,8 +21,6 @@ initTabs();
 
 initSlider();
 
-initFilters();
-
 initModal();
 
 initSocialDropdown();
@@ -34,9 +31,9 @@ initLogin();
 
 initSignup();
 
-initAnimationFilter();
-
 initSearchPage();
+
+initArtists();
 
 async function loadSection(container, getData, render, errorText) {
 
