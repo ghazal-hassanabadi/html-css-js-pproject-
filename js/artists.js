@@ -1,96 +1,97 @@
-import { BASE_URL, API_KEY } from "./api.js";
+import { getPopularPeople } from "./api.js";
 import { showMessage } from "./render.js";
+import { renderPagination } from "./pagination.js";
 
-const debounceDelay = 500;
+const artistsPerPage = 20;
 
-const input = document.querySelector("#artistInput");
-const clearBtn = document.querySelector("#artistClear");
-const filterToggle = document.querySelector("#artistFilterToggle");
-const filtersBox = document.querySelector("#artistFilters");
-const countHeading = document.querySelector("#artistCount");
-const list = document.querySelector("#artistList");
-
-const jobNames = {
+const departmentNames = {
   Acting: "بازیگر",
   Directing: "کارگردان",
   Writing: "نویسنده",
-  Production: "تهیه‌کننده",
-  Sound: "آهنگساز",
-  Camera: "فیلم‌بردار",
-  Editing: "تدوینگر"
+  Production: "تهیه‌کننده"
 };
+
+const input = document.querySelector("#artistInput");
+const clearBtn = document.querySelector("#artistClear");
+const typesBox = document.querySelector("#artistTypes");
+const filterToggle = document.querySelector("#artistFilterToggle");
+const filtersForm = document.querySelector("#artistFilters");
+const list = document.querySelector("#artistList");
+const pagination = document.querySelector("#artistPagination");
+const countHeading = document.querySelector("#artistCount");
 
 const state = {
   query: "",
-  gender: "all",
-  known: "all"
+  department: "all",
+  genders: [],
+  sort: "popularity",
+  page: 1
 };
 
-let timerId = null;
-let requestCounter = 0;
+let allArtists = [];
+let isLoaded = false;
 
 
-/* ---------- گرفتن اطلاعات ---------- */
+/* ---------- خواندن فرم ---------- */
 
-async function fetchJson(url) {
+function readFilters() {
 
-  const res = await fetch(url);
+  state.query = input.value.trim();
 
-  if (!res.ok) {
-    throw new Error("bad response");
-  }
+  const activeChip = typesBox.querySelector(".type-chip.active");
+  state.department = activeChip ? activeChip.dataset.dept : "all";
 
-  return res.json();
+  state.genders = [];
+
+  filtersForm
+    .querySelectorAll('input[name="gender"]:checked')
+    .forEach(function (box) {
+      state.genders.push(box.value);
+    });
+
+  const sortRadio = filtersForm.querySelector('input[name="sort"]:checked');
+  state.sort = sortRadio ? sortRadio.value : "popularity";
 }
 
-function buildUrl() {
 
-  if (state.query !== "") {
-    return (
-      `${BASE_URL}/search/person?api_key=${API_KEY}&language=en-US` +
-      `&page=1&query=${encodeURIComponent(state.query)}`
-    );
-  }
+/* ---------- فیلتر کردن ---------- */
 
-  return (
-    `${BASE_URL}/person/popular?api_key=${API_KEY}` +
-    `&language=en-US&page=1`
-  );
-}
+function getFilteredArtists() {
 
-function filterPeople(people) {
-
-  return people.filter(function (person) {
-
-    if (!person.profile_path) return false;
+  const result = allArtists.filter(function (person) {
 
     if (
-      state.gender !== "all" &&
-      String(person.gender) !== state.gender
+      state.department !== "all" &&
+      person.known_for_department !== state.department
     ) {
       return false;
     }
 
-    if (state.known !== "all") {
+    if (
+      state.genders.length > 0 &&
+      !state.genders.includes(String(person.gender))
+    ) {
+      return false;
+    }
 
-      const knownFor = person.known_for || [];
-
-      const match = knownFor.some(function (work) {
-        return work.media_type === state.known;
-      });
-
-      if (!match) return false;
+    if (
+      state.query !== "" &&
+      !person.name.toLowerCase().includes(state.query.toLowerCase())
+    ) {
+      return false;
     }
 
     return true;
   });
-}
 
-async function getArtists() {
+  if (state.sort === "name") {
 
-  const data = await fetchJson(buildUrl());
+    result.sort(function (a, b) {
+      return a.name.localeCompare(b.name);
+    });
+  }
 
-  return filterPeople(data.results);
+  return result;
 }
 
 
@@ -105,18 +106,19 @@ function updateHeading() {
   }
 }
 
-function renderArtists(people) {
+function renderArtists(items) {
 
-  list.innerHTML = people.map(function (person) {
+  list.innerHTML = items.map(function (person) {
 
     const photo = `https://image.tmdb.org/t/p/w300${person.profile_path}`;
-    const job = jobNames[person.known_for_department] || "هنرمند";
+    const job = departmentNames[person.known_for_department] || "";
 
     return `
       <div class="actor-card">
         <div class="actor-photo">
           <img src="${photo}" alt="${person.name}">
         </div>
+
         <h3 class="actor-name">${person.name}</h3>
         <span class="actor-job">${job}</span>
       </div>
@@ -125,76 +127,72 @@ function renderArtists(people) {
   }).join("");
 }
 
-async function loadArtists() {
+function showPage() {
 
-  requestCounter++;
-  const thisRequest = requestCounter;
+  if (!isLoaded) return;
 
   updateHeading();
-  showMessage(list, "در حال بارگذاری...");
 
-  try {
+  const artists = getFilteredArtists();
 
-    const people = await getArtists();
-
-    if (thisRequest !== requestCounter) return;
-
-    if (people.length === 0) {
-      showMessage(list, "هنرمندی پیدا نشد");
-      return;
-    }
-
-    renderArtists(people);
-
-  } catch (err) {
-
-    if (thisRequest !== requestCounter) return;
-
-    console.error("خطا در دریافت هنرمندان:", err);
-
-    showMessage(list, "مشکلی پیش آمد. دوباره تلاش کن");
+  if (artists.length === 0) {
+    showMessage(list, "هنرمندی پیدا نشد");
+    pagination.innerHTML = "";
+    return;
   }
+
+  const totalPages = Math.ceil(artists.length / artistsPerPage);
+  const start = (state.page - 1) * artistsPerPage;
+
+  renderArtists(artists.slice(start, start + artistsPerPage));
+
+  renderPagination(pagination, state.page, totalPages);
 }
 
 function startSearch() {
 
-  state.query = input.value.trim();
+  state.page = 1;
 
-  loadArtists();
+  readFilters();
+
+  showPage();
 }
 
 
 /* ---------- رویدادها ---------- */
 
-export function initArtists() {
+export async function initArtists() {
 
   if (
     !input ||
     !clearBtn ||
+    !typesBox ||
     !filterToggle ||
-    !filtersBox ||
-    !countHeading ||
-    !list
+    !filtersForm ||
+    !list ||
+    !pagination ||
+    !countHeading
   ) {
     return;
   }
 
   function toggleClearBtn() {
-    clearBtn.classList.toggle("visible", input.value !== "");
+
+    if (input.value !== "") {
+      clearBtn.classList.add("visible");
+    } else {
+      clearBtn.classList.remove("visible");
+    }
   }
 
   input.addEventListener("input", function () {
 
     toggleClearBtn();
 
-    clearTimeout(timerId);
-
-    timerId = setTimeout(startSearch, debounceDelay);
+    startSearch();
   });
 
   clearBtn.addEventListener("click", function () {
-
-    clearTimeout(timerId);
 
     input.value = "";
     toggleClearBtn();
@@ -203,25 +201,57 @@ export function initArtists() {
     startSearch();
   });
 
-  filterToggle.addEventListener("click", function () {
+  typesBox.addEventListener("click", function (e) {
 
-    const isOpen = filtersBox.classList.toggle("open");
+    const chip = e.target.closest(".type-chip");
 
-    filterToggle.setAttribute("aria-expanded", String(isOpen));
-  });
+    if (!chip) return;
 
-  filtersBox.addEventListener("change", function (e) {
+    typesBox.querySelectorAll(".type-chip").forEach(function (item) {
+      item.classList.remove("active");
+    });
 
-    if (e.target.name === "artistGender") {
-      state.gender = e.target.value;
-    }
-
-    if (e.target.name === "artistKnown") {
-      state.known = e.target.value;
-    }
+    chip.classList.add("active");
 
     startSearch();
   });
 
-  loadArtists();
+  filterToggle.addEventListener("click", function () {
+
+    const isOpen = filtersForm.classList.toggle("open");
+
+    filterToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  filtersForm.addEventListener("change", startSearch);
+
+  pagination.addEventListener("click", function (e) {
+
+    const btn = e.target.closest(".page-btn");
+
+    if (!btn || btn.disabled) return;
+
+    state.page = Number(btn.dataset.page);
+
+    showPage();
+
+    countHeading.scrollIntoView({ behavior: "smooth" });
+  });
+
+  showMessage(list, "در حال بارگذاری...");
+
+  try {
+
+    allArtists = await getPopularPeople();
+
+    isLoaded = true;
+
+    startSearch();
+
+  } catch (err) {
+
+    console.error("خطا در دریافت هنرمندان:", err);
+
+    showMessage(list, "مشکلی پیش آمد. دوباره تلاش کن");
+  }
 }

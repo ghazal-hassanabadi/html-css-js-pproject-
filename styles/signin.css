@@ -3,54 +3,54 @@
   /* پالت تصویر:
      زرشکی #5B0F1A | قهوه‌ای تیره #3B2A24 | قهوه‌ای #6B4E42 | کرم #B79E8C | سفید شیری #F7F3EE */
 
-  --primary: #6B4E42;
-  --primary-hover: #5B0F1A;
-  --primary-dark: #3B2A24;
-  --bg-menu: rgba(107, 78, 66, 0.25);
-  --color-hero-overlay: #b79e8c30;
-  --black: #3B2A24;
-  --menu-desktop-bg: #B79E8C;
-  --menu-desktop-text: #F7F3EE;
-  --background: #c2b5ab;
-  --surface: #35070e;
-  --surface-light: #3B2A24;
-  --surface-hover: #6B4E42;
-  --filter-bg: #5b0f1a;
+  --primary: #4A171F;
+  --primary-hover: #6B2934;
+  --primary-dark: #321116;
+  --bg-menu: rgba(74, 23, 31, 0.15);
+  --color-hero-overlay: #e5d1bf30;
+  --black: #2B1718;
+  --menu-desktop-bg: #947D70;
+  --menu-desktop-text: #FFF8F0;
+  --background: #F2E5D8;
+  --surface: #321116;
+  --surface-light: #4A171F;
+  --surface-hover: #6B2934;
+  --filter-bg: #4A171F;
   --white: #ffffff;
-  --text: #F7F3EE;
-  --text-secondary: #3B2A24;
-  --text-muted: #B79E8C;
-  --modal-close-bg: rgba(247, 243, 238, 0.08);
-  --modal-btn-bg-hover: rgba(183, 158, 140, 0.45);
-  --modal-btn-bg: rgba(183, 158, 140, 0.36);
-  --modal-dwn-hover: #F7F3EE;
-  --model-box-sh: #3B2A24;
+  --text: #FFF8F0;
+  --text-secondary: #2B1718;
+  --text-muted: #947D70;
+  --modal-close-bg: rgba(255, 248, 240, 0.08);
+  --modal-btn-bg-hover: rgba(148, 125, 112, 0.45);
+  --modal-btn-bg: rgba(148, 125, 112, 0.36);
+  --modal-dwn-hover: #FFF8F0;
+  --model-box-sh: #321116;
   --color-btn-bg: rgba(0, 0, 0, 0.4);
   --color-btn-bg-hover: rgba(0, 0, 0, 0.7);
   --color-btn-icon: #ffffff;
-  --background-color: #F7F3EE;
-  --menu-bar-bg:#6B4E42;
-  --menu-bar-box: #34070d;
+  --background-color: #FFF8F0;
+  --menu-bar-bg: #4A171F;
+  --menu-bar-box: #321116;
   --slider-width: 300px;
   --slider-height: 400px;
 
   /* ===== رنگ وضعیت‌ها ===== */
   --success: #22c55e;
-  --warning: #B79E8C;
+  --warning: #E5D1BF;
   --error: #ef4444;
   --info: #3b82f6;
 
   /* ===== Border ===== */
-  --border: #3B2A24;
-  --border-light: #6B4E42;
-  --border-red: rgba(183, 158, 140, 0.55);
+  --border: #321116;
+  --border-light: #6B2934;
+  --border-red: rgba(229, 209, 191, 0.5);
 
   /* ===== سایه ===== */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.6);
 
-  --red-glow: 0 0 20px rgba(107, 78, 66, 0.4);
+  --red-glow: 0 0 20px rgba(107, 41, 52, 0.45);
 
 
   /* ===== فونت ===== */
@@ -60,6 +60,7 @@
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
+
 
 }
 
@@ -84,55 +85,81 @@ body {
 
 
 
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 8px 14px 10px;
+  margin-bottom: 10px;
+  background-color: var(--primary);
+}
+
+
+.modal-header,
+body.dark-mode .modal-header {
+  background-color: transparent;
+  flex-direction: row;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+body.dark-mode header {
+  background-color: #22010a;
+}
+
+
 button,
 input {
   font-family: inherit;
 }
 
 .welcome {
-    background-color: var(--surface);
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    height: auto;
-    
+  order: 1;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  padding: 0;
+  background-color: transparent;
 }
 
 
 .welcome img {
-    width: clamp(120px, 30vw, 220px);
-    height: auto;
-    padding: 0;
-    margin: 0;
+  width: clamp(130px, 30vw, 220px);
+  height: auto;
+  padding: 0;
+  margin: 0;
 }
 
-.btnUser{
-    background-color: var(--surface);
+.btnUser {
+  order: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  background-color: transparent;
+}
+
+.user-btn {
     display: flex;
     align-items: center;
-    gap: 5px;
-    height: auto;
-    margin-bottom: 10px;
-}
+    justify-content: center;
 
-.user-btn{
-    
-   
-    border-radius: 55px;
-    padding: 5px;
+    padding: 0;
     height: 35px;
     width: 35px;
     font-size: 15px;
-    
     margin-right: 8px;
+    border-radius: 55px;
 
+    cursor: pointer;
+    color: var(--text);
 
     background: rgba(255, 255, 255, 0.075);
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     transition: var(--transition-normal);
-
 }
 
 .user-btn:hover {
@@ -140,46 +167,67 @@ input {
     border-color:var(--text-secondary);
 }
 
-
-.search-wrapper {
-  position: relative;
-  flex: 1;
-  max-width: 420px;
+.user-btn i {
+    pointer-events: none;
+    line-height: 1;
 }
 
+.search-wrapper {
+  order: 2;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 35px;
+  border-radius: 35px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
 
-.search-icon {
+.search-wrapper .search-icon {
   position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
+  top: 0;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
   color: #fff;
   pointer-events: none;
   z-index: 2;
 }
 
+.search-wrapper .search-box {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding-inline: 40px 12px;
+  border: none;
+  border-radius: 55px;
+  background: transparent;
+  color: var(--text);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  outline: none;
+}
 
-.search-box{
-    padding: 8px 36px 8px 12px;
-    border-radius: 10px;
-    border: none;
-    width: calc(100% - 10px);
-    height: 30px;
-    margin: 5px;
-    font-size: 10px;
-    outline: none;
-    position: relative;
-    z-index: 1;
+.search-wrapper .search-box::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
 
 
+.search-wrapper .search-box:focus,
+.search-wrapper .search-box:not(:placeholder-shown) {
+  padding-inline: 40px 14px;
+  cursor: text;
+}
 
-
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: var(--transition-normal);
-
+.search-wrapper .search-box:focus::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 
@@ -198,19 +246,21 @@ input {
 .menu {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 9px;
     margin-bottom: 16px;
-    
     flex-wrap: wrap;
+    
+
 }
+
+
 
 .tablinks{
     
-    padding:6px 10px;
-    
+    padding:4px 6px;
     border: none;
-    font-size: 10px;
-    
+    font-size: 12px;
+    width: auto;
 
     background:var(--bg-menu);
     color: var(--text-secondary);
@@ -223,7 +273,7 @@ input {
 .tablinks-active {
 
     border-radius: 8px;
-    padding:50px;
+    padding:4px 15px;
     border: none;
     font-size: 12px;
 
@@ -231,13 +281,27 @@ input {
     background: var(--primary);
     color: var(--white);
     border-color: var(--primary);
-    box-shadow: 0 0 18px rgba(107, 78, 66, 0.5);
+    box-shadow: 0 0 18px rgba(63, 43, 8, 0.66);
 }
 
-.tablinks 
-.tablinks-active:hover{
-  background: var(--primary);
+.tablinks:hover{
+   background: var(--menu-desktop-bg);
 
+}
+
+
+
+.home-active{
+    position: relative;
+    overflow: hidden;
+    
+    width: 92%;
+    aspect-ratio: 3 / 4;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    
 }
 
 
@@ -617,6 +681,10 @@ input {
   transform: rotate(90deg);
 }
 
+.side-close i {
+  padding: 5px;
+}
+
 .side-list {
   display: flex;
   flex-direction: column;
@@ -634,7 +702,7 @@ input {
   text-decoration: none;
   cursor: pointer;
   color: var(--text);
-  background: var(--filter-bg);
+  background: var(--surface);
   border: 1px solid var(--black);
   border-radius: 10px;
   transition: var(--transition-fast);
@@ -876,60 +944,118 @@ body.dark-mode #signupForm button[type="submit"]:hover {
 @media (min-width: 766px) {
 
 
-.welcome {
-    background-color: var(--surface);
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    height: auto;
-    margin-bottom: 0;
+header {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
 }
 
+.welcome {
+  order: 3;
+  flex: 0 0 auto;
+  margin-right: auto;
+}
 
 .welcome img {
-  width: 150px;
+  width: 160px;
+  
 }
 
 
 .user-btn {
-   margin-top: 6px;
-   margin-right: 3vw;
+  margin-top: 6px;
+  margin-right: 3vw;
+  order: 1;
 }
 
+.btnUser {
+  display: contents;
+}
 
-  .menu {
+ 
+.search-wrapper {
+  flex: 0 0 auto;
+  width: 35px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.075);
+  transition: width var(--transition-normal),
+              background var(--transition-normal);
+}
+
+.search-wrapper:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.search-wrapper:focus-within {
+  width: clamp(220px, 40vw, 420px);
+}
+
+.search-wrapper:has(.search-box:not(:placeholder-shown)) {
+  width: clamp(220px, 40vw, 420px);
+}
+
+.search-wrapper .search-icon {
+  font-size: 15px;
+}
+
+.search-wrapper .search-box {
+  padding: 0;
+  border-radius: 0;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.search-wrapper .search-box::placeholder {
+  color: transparent;
+}
+
+.search-wrapper .search-box:focus,
+.search-wrapper .search-box:not(:placeholder-shown) {
+  padding-inline: 40px 14px;
+  cursor: text;
+}
+
+.search-wrapper .search-box:focus::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+ 
+
+
+.menu {
     display: flex;
     justify-content: right;
-    gap: 25px;
+    gap: 10px;
     margin-bottom: 16px;
     margin-top: 16px;
     flex-wrap: wrap;
     margin-right: 35px;
     
-  }
-
-
-  .tablinks{
-    border-radius: 12px;
-    padding:4px 25px;
-    border: none;
-    font-size: 20px;
-  }
-
-
-  .tablinks-active {
-    font-size: 20px;
     }
 
 
-  .home-active{
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    display: flex;
+    .tablinks{
+        border-radius: 12px;
+        padding:4px 20px;
+        border: none;
+        font-size: 15px;
+    }
+
+
+    .tablinks-active {
+        font-size: 25px;
+    }
+
+
+    .home-active{
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        width: 92%;
+        
+        display: flex;
     
-    }
+}
 
 
   #signupForm {
@@ -996,49 +1122,108 @@ body.dark-mode #signupForm button[type="submit"]:hover {
 
 @media (min-width: 1100px) {
 
+
   .welcome img {
-    width: 100px;
+    width: 130px;
+    height: 70px;
+    
+  
+  }
+
+
+    header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 5px;
+    margin-bottom: 10px;
+    background-color: var(--primary);
+  }
+
+  body.dark-mode header {
+    background-color: #22010a;
+  }
+
+  .btnUser {
+    display: contents;
     
   }
 
-  .menu{
-    display: none;
+  .user-btn {
+    order: 1;
+    margin: 0;
+    transform: none;
+    margin-right: 30px;
+  }
+
+  .search-wrapper {
+    order: 2;
+  }
+
+  .welcome {
+    order: 3;
+    flex: 0 0 auto;
+    padding-inline: 0;
+    margin-right: 0;
   }
 
   .menu-desktip {
+    order: 4;
     display: flex;
     gap: 6px;
     padding: 0;
     margin-inline-start: auto;
-    margin-inline-end: 20px;
+    margin-inline-end: 0;
   }
 
+  .search-wrapper:focus-within {
+    width: 260px;
+  }
+
+  .search-wrapper:has(.search-box:not(:placeholder-shown)) {
+    width: 70px;
+  }
+
+    .menu{
+    display: none;
+  }
+
+
+
+
+
+
+
   .tablinks-active{
-    width: clamp(90px, 9vw, 140px);
-    font-size: clamp(14px, 1.5vw, 20px);
+    
+    font-size: 18px;
     background-color:var(--menu-desktop-bg);
-    color: var(--black);
-    padding: 0;
+    width: auto;
+    min-width: 0;
+    white-space: nowrap;
+    padding:0;
 
   }
 
   .tablinks{
-    width: clamp(90px, 9vw, 140px);
+    margin-left: 5px;
     font-size: 18px;
-    padding: 5px 7px;
+    width: auto;
+    min-width: 0;
+    white-space: nowrap;
+      
+    
     color:var(--menu-desktop-text) ;
 
   }
 
-  .user-btn{
-    
-    transform: translateX(10px);
-   
-  }
 
-  .btnUser .user-btn {
-    margin-bottom: 6px;
-  }
+ 
+
+
+  
+
+
 
   .home-active {
     width: 95%;
@@ -1048,7 +1233,6 @@ body.dark-mode #signupForm button[type="submit"]:hover {
     margin: 0 auto;
     border-radius: 14px;
   }
-
 
   #signupForm {
     max-width: 500px;

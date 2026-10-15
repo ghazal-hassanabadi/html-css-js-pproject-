@@ -14,7 +14,7 @@ import {
   getPopularActors
 } from "./api.js";
 
-import { renderCards, renderActors, showMessage } from "./render.js";
+import { renderCards, renderActors, showMessage, initFavoriteButtons } from "./render.js";
 
 
 initTabs();
@@ -34,6 +34,8 @@ initSignup();
 initSearchPage();
 
 initArtists();
+
+initFavoriteButtons();
 
 async function loadSection(container, getData, render, errorText) {
 

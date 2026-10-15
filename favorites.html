@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <title>علاقه‌مندی‌ها | Popcorn</title>
+</head>
+<body>
+
+  <header>
+    <section class="welcome">
+      <img src="images/popcorn-l.png" alt="">
+    </section>
+
+    <div class="btnUser">
+      <button class="user-btn" id="userBtn" aria-label="منو">
+        <i class="fa-solid fa-bars" style="color: rgb(255, 255, 255);"></i>
+      </button>
+
+      <div class="search-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon" style="color: rgb(255, 255, 255);"></i>
+        <input type="text" class="search-box" id="searchBox" placeholder="جستجوی فیلم،سریال و بازیگر...">
+      </div>
+
+      <section class="menu-desktip">
+        <button class="tablinks" data-tab="tab1"> خانه </button>
+        <button class="tablinks" data-tab="tab2"> هنرمندان </button>
+        <button class="tablinks" data-tab="tab3"> جستجو </button>
+        <button class="tablinks" data-tab="tab4"> تماس با ما </button>
+      </section>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="menu">
+      <button class="tablinks" data-tab="tab1"> خانه </button>
+      <button class="tablinks" data-tab="tab2"> هنرمندان </button>
+      <button class="tablinks" data-tab="tab3"> جستجو </button>
+      <button class="tablinks" data-tab="tab4"> تماس با ما </button>
+    </section>
+
+    <section class="favorites">
+
+      <div class="fav-head">
+        <span class="fav-head-icon"><i class="fa-regular fa-heart"></i></span>
+        <div>
+          <h1 class="fav-title-main">علاقه‌مندی‌ها</h1>
+          <p class="fav-subtitle">فیلم‌ها و سریال‌هایی که دوستشان داری.</p>
+        </div>
+      </div>
+
+      <div class="fav-toolbar">
+
+        <div class="fav-tools">
+    <div class="fav-select" id="favSort">
+
+      <button type="button" class="fav-select-btn" aria-label="مرتب‌سازی">
+        <span id="favSortText">جدیدترین</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+
+      <ul class="fav-select-menu">
+        <li><button type="button" class="active" data-sort="new">جدیدترین</button></li>
+        <li><button type="button" data-sort="old">قدیمی‌ترین</button></li>
+        <li><button type="button" data-sort="rating">بالاترین امتیاز</button></li>
+        <li><button type="button" data-sort="title">الفبایی</button></li>
+      </ul>
+
+    </div>
+
+          <div class="fav-view" id="favView">
+            <button type="button" class="active" data-view="grid" aria-label="شبکه‌ای">
+              <i class="fa-solid fa-table-cells-large"></i>
+            </button>
+            <button type="button" data-view="list" aria-label="لیستی">
+              <i class="fa-solid fa-list"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="fav-chips" id="favChips">
+          <button type="button" class="fav-chip active" data-filter="all">همه (0)</button>
+          <button type="button" class="fav-chip" data-filter="movie">فیلم (0)</button>
+          <button type="button" class="fav-chip" data-filter="tv">سریال (0)</button>
+        </div>
+
+      </div>
+
+      <section class="fav-list is-grid" id="favList"></section>
+
+      <p class="fav-note" id="favNote"></p>
+
+    </section>
+
+  </main>
+
+  <div class="side-overlay" id="sideOverlay"></div>
+
+  <aside class="side-menu" id="sideMenu" aria-hidden="true">
+
+    <button class="side-close" id="sideClose" aria-label="بستن">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <nav class="side-list">
+
+      <a href="login.html" class="side-item">
+        <i class="fa-regular fa-user"></i>
+        <span>ورود و ثبت نام</span>
+      </a>
+
+      <a href="#" class="side-item">
+        <i class="fa-solid fa-crown"></i>
+        <span>خرید اشتراک</span>
+      </a>
+
+      <button type="button" class="side-item" id="darkToggle" aria-pressed="false">
+        <i class="fa-solid fa-moon" id="darkIcon"></i>
+        <span>دارک مود</span>
+        <span class="side-switch"></span>
+      </button>
+
+      <a href="favorites.html" class="side-item">
+        <i class="fa-regular fa-heart"></i>
+        <span>علاقه‌مندی‌ها</span>
+      </a>
+
+    </nav>
+
+  </aside>
+
+  <script type="module" src="js/favorites-page.js"></script>
+
+</body>
+</html>

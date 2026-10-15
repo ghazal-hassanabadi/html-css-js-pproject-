@@ -21,7 +21,6 @@ const tvGenreIds = {
 const input = document.querySelector("#exploreInput");
 const clearBtn = document.querySelector("#exploreClear");
 const typesBox = document.querySelector("#exploreTypes");
-const filterToggle = document.querySelector("#filterToggle");
 const filtersForm = document.querySelector("#exploreFilters");
 const ratingMin = document.querySelector("#ratingMin");
 const ratingOutput = document.querySelector("#ratingOutput");
@@ -395,7 +394,7 @@ export function initSearchPage() {
     !input ||
     !clearBtn ||
     !typesBox ||
-    !filterToggle ||
+
     !filtersForm ||
     !ratingMin ||
     !ratingOutput ||
@@ -454,12 +453,7 @@ export function initSearchPage() {
     startSearch();
   });
 
-  filterToggle.addEventListener("click", function () {
-
-    const isOpen = filtersForm.classList.toggle("open");
-
-    filterToggle.setAttribute("aria-expanded", String(isOpen));
-  });
+  
 
   ratingMin.addEventListener("input", function () {
     ratingOutput.textContent = ratingMin.value;

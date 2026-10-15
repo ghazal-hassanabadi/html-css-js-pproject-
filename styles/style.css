@@ -525,7 +525,7 @@ input {
 /* ----------  بازیگران ---------- */
 
 .actors-list {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px 10px;
 }
 
@@ -533,6 +533,7 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 0;
   text-align: center;
   gap: 8px;
 }
@@ -1271,6 +1272,27 @@ body.no-scroll {
   scrollbar-width: none;
 }
 
+.artists .explore-bar {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.artists .explore-types {
+  flex: none;
+  width: 100%;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.artists .type-chip {
+  flex-shrink: 0;
+}
+
+.artists .filter-toggle {
+  align-self: flex-start;
+}
+
 .explore-types::-webkit-scrollbar {
   display: none;
 }
@@ -1306,6 +1328,7 @@ body.no-scroll {
   gap: 6px;
   height: 34px;
   padding: 0 12px;
+  margin-top: 10px;
   font-size: 13px;
   cursor: pointer;
   color: var(--text-secondary);
@@ -1333,14 +1356,8 @@ summary {
 /* ---------- پنل فیلتر (از استایل فیلتر قبلی استفاده می‌کند) ---------- */
 
 .explore-filters {
-  display: none;
   margin-top: 14px;
 }
-
-.explore-filters.open {
-  display: flex;
-}
-
 
 
 .rating-row {
@@ -1410,6 +1427,7 @@ summary {
   font-size: 18px;
   color: var(--text-secondary);
 }
+
 
 #exploreResults {
   display: grid;
@@ -1640,6 +1658,47 @@ summary {
   font-size: 18px;
   text-align: center;
   color: var(--text-secondary);
+}
+
+
+/* ---------- نمایش ژانر و خلاصه با هاور ---------- */
+
+.movie-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.4));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.movie-genres {
+  font-size: 11px;
+  font-weight: 700;
+  color: #e5d1bf;
+}
+
+.movie-overview {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #ffffff;
+}
+
+@media (hover: hover) {
+
+  .movie-card:hover .movie-overlay {
+    opacity: 1;
+  }
 }
 
 
@@ -2053,7 +2112,7 @@ body.dark-mode .home-active::after {
   font-family: inherit;
   font-size: 13px;
   color: var(--text);
-  background: var(--filter-bg);
+  background: var(--primary);
   border: 1px solid var(--border);
   border-radius: 10px;
   outline: none;
@@ -2240,6 +2299,31 @@ body.dark-mode .home-active::after {
   padding: 8px 14px 0;
 }
 
+.artist-head {
+  margin: 8px 0 16px;
+}
+
+.artists-body .explore-bar {
+  flex-wrap: wrap;
+}
+
+.artists-body .explore-types {
+  flex: 1 1 100%;
+}
+
+.artists-body {
+  display: block;
+}
+
+.movie-filter.artist-filters {
+  display: none;
+  margin: 14px 0 0;
+}
+
+.movie-filter.artist-filters.open {
+  display: flex;
+}
+
 #artistList {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2247,65 +2331,434 @@ body.dark-mode .home-active::after {
   margin-bottom: 24px;
 }
 
-
-
-.artist-search {
-  margin-bottom: 12px;
+.actor-job {
+  font-size: 10px;
+  color: var(--text-secondary);
+  opacity: 0.7;
 }
 
-#artistTypes,
-#artistGender {
-  margin-bottom: 10px;
+
+
+/*--------------------------------favorite-------------*/
+
+
+.fav-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #fff;
+  background: var(--color-btn-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: var(--transition-fast);
 }
 
-.artist-head {
+.fav-btn:hover {
+  background: var(--color-btn-bg-hover);
+  transform: scale(1.1);
+}
+
+.fav-btn.active {
+  color: #e0566b;
+}
+
+
+/* ---------- صفحه علاقه‌مندی‌ها ---------- */
+
+.favorites {
+  max-width: 1520px;
+  margin-inline: auto;
+  padding: 8px 14px 20px;
+}
+
+.fav-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0 20px;
+}
+
+.fav-head-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  font-size: 22px;
+  color: var(--primary);
+  background: var(--background-color);
+  border: 1px solid var(--menu-desktop-bg);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+
+.fav-title-main {
+  font-size: 24px;
+  color: var(--text-secondary);
+}
+
+.fav-subtitle {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.fav-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.fav-tools {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
 }
 
-.artist-head .explore-search {
+/* ---------- لیست مرتب‌سازی ---------- */
+
+.fav-select {
+  position: relative;
+}
+
+.fav-select-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  background: var(--background-color);
+  border: 1px solid var(--menu-desktop-bg);
+  border-radius: 10px;
+  transition: var(--transition-fast);
+}
+
+.fav-select-btn:hover {
+  background: var(--bg-menu);
+}
+
+.fav-select-btn i {
+  font-size: 11px;
+  color: var(--text-muted);
+  transition: transform var(--transition-normal);
+}
+
+.fav-select.open .fav-select-btn {
+  border-color: var(--primary-dark);
+}
+
+.fav-select.open .fav-select-btn i {
+  transform: rotate(180deg);
+}
+
+.fav-select-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 20;
+  min-width: 100%;
+  padding: 6px;
+  list-style: none;
+  background: var(--background-color);
+  border: 1px solid var(--menu-desktop-bg);
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+}
+
+.fav-select.open .fav-select-menu {
+  display: block;
+}
+
+.fav-select-menu button {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 13px;
+  text-align: right;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  transition: var(--transition-fast);
+}
+
+.fav-select-menu button:hover {
+  background: var(--bg-menu);
+}
+
+.fav-select-menu button.active {
+  color: var(--white);
+  background: var(--primary);
+}
+
+.fav-view {
+  display: flex;
+  overflow: hidden;
+  background: var(--background-color);
+  border: 1px solid var(--menu-desktop-bg);
+  border-radius: 10px;
+}
+
+.fav-view button {
+  width: 40px;
+  height: 38px;
+  cursor: pointer;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  transition: var(--transition-fast);
+}
+
+.fav-view button.active {
+  color: var(--white);
+  background: var(--primary);
+}
+
+.fav-chips {
+  display: flex;
+  gap: 8px;
+}
+
+.fav-chip {
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  background: var(--background-color);
+  border: 1px solid var(--menu-desktop-bg);
+  border-radius: 12px;
+  transition: var(--transition-fast);
+}
+
+.fav-chip:hover {
+  background: var(--bg-menu);
+}
+
+.fav-chip.active {
+  color: var(--white);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+
+/* ---------- کارت‌ها ---------- */
+
+.fav-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.fav-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  background: var(--background-color);
+  border: 1px solid rgba(148, 125, 112, 0.4);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.fav-poster {
+  position: relative;
+  flex: 0 0 96px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--surface-hover);
+}
+
+.fav-poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.fav-badge {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  width: 24px;
+  height: 32px;
+  padding-top: 6px;
+  font-size: 11px;
+  color: var(--white);
+  background: var(--primary);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
+}
+
+.fav-info {
   flex: 1;
   min-width: 0;
 }
 
-/* در دسکتاپ دکمه‌ی فیلتر مخفی می‌شد؛ اینجا همیشه نشان داده شود */
-.artist-head .filter-toggle {
-  display: flex;
+.fav-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.artist-filters {
+.fav-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.fav-genres span {
+  padding: 3px 10px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: var(--bg-menu);
+  border: 1px solid rgba(148, 125, 112, 0.4);
+  border-radius: 20px;
+}
+
+.fav-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.fav-rating {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.fav-rating i {
+  margin-left: 4px;
+  color: #d4a05a;
+}
+
+
+/* ---------- منوی سه‌نقطه ---------- */
+
+.fav-menu {
+  position: relative;
+  align-self: flex-start;
+}
+
+.fav-dots {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.fav-dots:hover {
+  background: var(--bg-menu);
+}
+
+.fav-dropdown {
   display: none;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 14px;
-  padding: 16px;
+  position: absolute;
+  top: 34px;
+  left: 0;
+  z-index: 5;
+  min-width: 190px;
+  padding: 6px;
   background: var(--background-color);
   border: 1px solid var(--menu-desktop-bg);
-  border-radius: 14px;
+  border-radius: 10px;
   box-shadow: var(--shadow-md);
 }
 
-.artist-filters.open {
+.fav-menu.open .fav-dropdown {
+  display: block;
+}
+
+.fav-remove {
   display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 10px;
+  font-size: 13px;
+  text-align: right;
+  cursor: pointer;
+  color: var(--error);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
 }
 
-.artist-filters .filter-row {
-  flex: 0 0 auto;
-  min-width: 0;
-  
+.fav-remove:hover {
+  background: var(--bg-menu);
+}
+
+
+/* ---------- حالت خالی و یادداشت پایین ---------- */
+
+.fav-empty {
+  grid-column: 1 / -1;
+  padding: 50px 12px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.fav-empty i {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 34px;
+  color: var(--text-muted);
+}
+
+.fav-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin: 24px auto 40px;
+  padding: 10px 18px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg-menu);
+  border: 1px solid rgba(148, 125, 112, 0.4);
+  border-radius: 12px;
+}
+
+body.dark-mode .fav-head-icon {
+  color: #996b72;
 }
 
 
 
-.artist-filters .filter-row-content {
-  grid-template-columns: repeat(3, 1fr);
-}
 
-#artistTypes {
-  margin-bottom: 10px;
-}
 
 
 /*------------------------------tablet---------------------*/
@@ -2396,6 +2849,7 @@ header {
 .menu {
     display: flex;
     justify-content: right;
+    text-align: center;
     gap: 10px;
     margin-bottom: 16px;
     margin-top: 16px;
@@ -2405,17 +2859,9 @@ header {
     }
 
 
-    .tablinks{
-        border-radius: 12px;
-        padding:4px 20px;
-        border: none;
-        font-size: 15px;
-    }
 
 
-    .tablinks-active {
-        font-size: 25px;
-    }
+
 
 
     .home-active{
@@ -2455,11 +2901,11 @@ header {
     
 }
 .tablinks-active {
-    height: 30px;
+    
      width: auto;
     padding: 4px 6px;
     
-    font-size: 14px;
+    font-size: 15px;
 
 
 }
@@ -2467,9 +2913,11 @@ header {
 .tablinks {
     width: auto;
     padding: 4px 6px;
-    
+    border-radius: 12px;
     font-size: 15px;
-    height: 30px;
+    
+    border: none;
+    
 
 }
 
@@ -2580,21 +3028,29 @@ header {
   .social-arrow {
     margin-inline-start: 8px;
   }
-/*
-  .social-menu {
-    position: absolute;
-    bottom: calc(100% + 12px);
-    left: 0;
-    z-index: 10;
-    min-width: 190px;
-    margin-top: 0;
-    padding: 8px;
-    background: var(--surface-light);
-    border: 1px solid var(--border-red);
-    border-radius: 12px;
-    box-shadow: var(--shadow-md);
+
+
+  .explore-types {
+    justify-content: center;
   }
-*/
+
+
+  .artists .explore-bar {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .artists .explore-types {
+    flex: 1;
+    width: auto;
+    justify-content: center;
+  }
+
+  .artists .filter-toggle {
+    align-self: auto;
+  }
+
+ 
 
   .actors-list {
     display: flex;
@@ -2813,9 +3269,46 @@ header {
   .contact-submit {
     align-self: flex-start;
   }
-
   .artists {
     padding: 8px 25px 0;
+  }
+
+  .artists-body {
+    margin-top: 22px;
+  }
+
+  /* وقتی پنل باز است: پنل راست، هنرمندان چپ */
+  .artists-body:has(.artist-filters.open) {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    column-gap: 24px;
+    align-items: start;
+  }
+
+  .movie-filter.artist-filters {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    margin: 0;
+  }
+
+  .artists .explore-bar {
+    flex-wrap: nowrap;
+  }
+
+  .artists .explore-types {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .artist-filters .filter-title,
+  .artist-filters .filter-row {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .artists-results .explore-count {
+    margin-top: 0;
   }
 
   #artistList {
@@ -2827,23 +3320,27 @@ header {
     font-size: 12px;
   }
 
-  .artist-filters {
-    flex-direction: row;
-    align-items: flex-start;
+/*--------------------------------favorite---------------------*/
+
+ .favorites {
+    padding: 8px 25px 20px;
   }
 
-  .artist-filters .filter-row {
-    flex: 1;
+  .fav-list.is-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .artist-filters .filter-row-content {
-    grid-template-columns: 1fr;
+  .fav-poster {
+    flex-basis: 140px;
   }
 
+  .fav-title {
+    font-size: 19px;
+  }
 
-
-
-
+  .fav-title-main {
+    font-size: 30px;
+  }
 
  }
 
@@ -2918,39 +3415,32 @@ header {
     width: 70px;
   }
 
-    .menu{
+  .menu{
     display: none;
   }
 
 
-
-
-
-
-
-  .tablinks-active{
-    
-    font-size: 18px;
-    background-color:var(--menu-desktop-bg);
-    width: auto;
-    min-width: 0;
-    white-space: nowrap;
-    padding:0;
-
+  .menu-desktip {
+    text-align: center;
+    margin-left: 35px;
   }
 
-  .tablinks{
-    margin-left: 5px;
-    font-size: 18px;
-    width: auto;
-    min-width: 0;
-    white-space: nowrap;
-      
-    
-    color:var(--menu-desktop-text) ;
 
+
+  .tablinks,
+  .tablinks-active {
+    width: auto;
+    min-width: clamp(90px, 9vw, 140px);
+    padding: 6px 14px;
+    white-space: nowrap;
+    font-size: 17px;
+    color: var(--background-color);
   }
 
+
+  .tablinks-active {
+    background-color: var(--menu-desktop-bg);
+  }
 
  
 
@@ -3242,6 +3732,10 @@ header {
   .artists {
     max-width: 1520px;
     margin-inline: auto;
+  }
+
+  .artists .filter-toggle {
+    display: flex;
   }
  
 

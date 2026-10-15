@@ -166,7 +166,7 @@
 
                       <section class="section-divider"></section>
 
-                          <a href="#" class="more-link"> بیشتر </a>
+                          <a href="#" class="more-link" data-goto="tab2"> بیشتر </a>
 
                 </div>
 
@@ -181,7 +181,7 @@
 
                       <section class="section-divider"> </section>
 
-                          <a href="#" class="more-link" data-goto="tab2"> بیشتر </a>
+                          <a href="#" class="more-link" data-goto="tab3"> بیشتر </a>
                 
                 </div>
 
@@ -198,7 +198,7 @@
 
                       <section class="section-divider"></section>
 
-                          <a href="#" class="more-link">   بیشتر </a>
+                          <a href="#" class="more-link" data-goto="tab3">   بیشتر </a>
 
                 </div>
 
@@ -319,13 +319,22 @@
   <section class="artists">
 
     <div class="artist-head">
-
       <div class="explore-search">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="artistInput" placeholder="جستجوی اسم هنرمند...">
+        <input type="text" id="artistInput" placeholder="جستجوی هنرمند...">
         <button type="button" class="explore-clear" id="artistClear" aria-label="پاک کردن">
           <i class="fa-solid fa-xmark"></i>
         </button>
+      </div>
+    </div>
+
+    <div class="explore-bar">
+
+      <div class="explore-types" id="artistTypes">
+        <button type="button" class="type-chip active" data-dept="all">همه</button>
+        <button type="button" class="type-chip" data-dept="Acting">بازیگران</button>
+        <button type="button" class="type-chip" data-dept="Directing">کارگردان‌ها</button>
+        <button type="button" class="type-chip" data-dept="Writing">نویسنده</button>
       </div>
 
       <button type="button" class="filter-toggle" id="artistFilterToggle" aria-expanded="false">
@@ -335,31 +344,41 @@
 
     </div>
 
-    <div class="artist-filters" id="artistFilters">
+    <div class="artists-body">
 
-      <details class="filter-row" >
-        <summary>جنسیت</summary>
-        <div class="filter-row-content">
-          <label><input type="radio" name="artistGender" value="all" checked /> همه</label>
-          <label><input type="radio" name="artistGender" value="1" /> زن</label>
-          <label><input type="radio" name="artistGender" value="2" /> مرد</label>
-        </div>
-      </details>
+      <form class="movie-filter artist-filters" id="artistFilters">
 
-      <details class="filter-row" >
-        <summary>شناخته‌شده برای</summary>
-        <div class="filter-row-content">
-          <label><input type="radio" name="artistKnown" value="all" checked /> همه</label>
-          <label><input type="radio" name="artistKnown" value="movie" /> فیلم</label>
-          <label><input type="radio" name="artistKnown" value="tv" /> سریال</label>
-        </div>
-      </details>
+        <h2 class="filter-title">فیلتر هنرمندان</h2>
+
+        <details class="filter-row" open>
+          <summary>جنسیت</summary>
+          <div class="filter-row-content">
+            <label><input type="checkbox" name="gender" value="1" /> زن</label>
+            <label><input type="checkbox" name="gender" value="2" /> مرد</label>
+          </div>
+        </details>
+
+        <details class="filter-row">
+          <summary>ترتیب نمایش</summary>
+          <div class="filter-row-content">
+            <label><input type="radio" name="sort" value="popularity" checked /> محبوب‌ترین</label>
+            <label><input type="radio" name="sort" value="name" /> الفبایی</label>
+          </div>
+        </details>
+
+      </form>
+
+      <div class="artists-results">
+
+        <h2 class="explore-count" id="artistCount">هنرمندان محبوب</h2>
+
+        <section id="artistList"></section>
+
+        <nav class="pagination" id="artistPagination" aria-label="صفحه‌بندی"></nav>
+
+      </div>
 
     </div>
-
-    <h2 class="explore-count" id="artistCount">هنرمندان محبوب</h2>
-
-    <section id="artistList"></section>
 
   </section>
 
@@ -396,10 +415,7 @@
           <button type="button" class="type-chip" data-type="animation">انیمیشن‌ها</button>
         </div>
  
-        <button type="button" class="filter-toggle" id="filterToggle" aria-expanded="false">
-          <i class="fa-solid fa-sliders"></i>
-          فیلتر
-        </button>
+
  
       </div>
  
@@ -408,7 +424,7 @@
  
         <h2 class="filter-title">فیلتر جستجو</h2>
  
-        <details class="filter-row" open>
+        <details class="filter-row" >
           <summary>ژانر</summary>
           <div class="filter-row-content">
             <label><input type="checkbox" name="genre" value="28" /> اکشن</label>
@@ -647,9 +663,9 @@
       <span class="side-switch"></span>
     </button>
 
-        <a href="#" class="side-item">
-      <i class="fa-solid fa-crown"></i>
-      <span> علاقه مندی </span>
+    <a href="favorites.html" class="side-item">
+      <i class="fa-regular fa-heart"></i>
+      <span>علاقه‌مندی‌ها</span>
     </a>
 
   </nav>

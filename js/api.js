@@ -2,6 +2,8 @@ const API_KEY = "65f3fe83f5b5a5b8ff8be0ee85035657";
 
 const BASE_URL = "https://api.themoviedb.org/3";
 
+
+
 export async function getNewMovies() {
   const url =
     `${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=fa-IR&page=1`;
@@ -81,6 +83,46 @@ export async function getPopularActors() {
   });
 
   return actors.slice(0, 10);
+}
+
+export async function getPopularPeople() {
+
+  const requests = [];
+
+  for (let page = 1; page <= 10; page++) {
+
+    requests.push(
+      fetch(
+        `${BASE_URL}/person/popular?api_key=${API_KEY}&language=en-US&page=${page}`
+      ).then(function (res) {
+
+        if (!res.ok) {
+          throw new Error("خطا در دریافت هنرمندان");
+        }
+
+        return res.json();
+      })
+    );
+  }
+
+  const pages = await Promise.all(requests);
+
+  const seen = new Set();
+  const people = [];
+
+  pages.forEach(function (data) {
+
+    data.results.forEach(function (person) {
+
+      if (person.profile_path && !seen.has(person.id)) {
+
+        seen.add(person.id);
+        people.push(person);
+      }
+    });
+  });
+
+  return people;
 }
 
 export { BASE_URL, API_KEY };
